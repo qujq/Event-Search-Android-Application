@@ -9,4 +9,18 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="event_search">Event Search</string>
+    <string-array name="spingarr">
+        <item>All</item>
+        <item>Music</item>
+        <item>Sport</item>
+        <item>Art \u0026 Theatre</item>
+        <item>Film</item>
+        <item>Miscellaneous</item>
+    </string-array>
+    <string-array name="distance_unit">
+        <item>Miles</item>
+        <item>Kilometers</item>
+    </string-array>
 </resources>
