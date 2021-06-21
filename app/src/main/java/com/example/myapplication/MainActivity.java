@@ -18,12 +18,6 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-//import android.widget.RadioGroup;
-//import android.widget.RadioButton;
-//import android.widget.EditText;
-//import android.widget.Button;
-//import android.widget.Spinner;
-//import android.widget.AdapterView.*;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -47,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String location_chosen;
     private EditText location_input;
     private Button search_button;
+    private Button clear_button;
     private RadioGroup location_choice;
     private RadioButton here_location;
     private RadioButton other_location;
@@ -78,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         here_location = findViewById(R.id.here_location);
         other_location = findViewById(R.id.other_location);
         here_location.setChecked(true);  // set default location here
+        location_chosen = "Here";
 
         keyword_input = findViewById(R.id.keyword_input);
         category_choice = findViewById(R.id.category_choice);
@@ -109,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup rg, int checkedId) {
                 // TODO Auto-generated method stub
                 if(checkedId == here_location.getId()){
-                    location_chosen = here_location.getText().toString();
+                    location_chosen = "Here";
                 }else{
-                    location_chosen = other_location.getText().toString();
+                    location_chosen = "Other";
                 }
                 Log.d("location_chosen", location_chosen);
             }
@@ -127,14 +123,45 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String keywordValue = keyword_input.getText().toString();
                 String distanceValue = distance_input.getText().toString();
+                int distanceValue_int = 10;
+                if(!distanceValue.equals("")){
+                    distanceValue_int = Integer.parseInt(distanceValue);
+                }
                 String locationValue = location_input.getText().toString();
                 Log.d(TAG, "keyWordValue is : " + keywordValue +
                         " category_chosen: " + category_chosen +
-                        " distanceValue: " + distanceValue +
+                        " distanceValue_int: " + distanceValue_int +
                         " distance_chosen: " + distance_chosen +
                         " location_chosen: " + location_chosen +
                         " locationValue: " + locationValue
                 );
+                Boolean formHasError = false;
+                if (keywordValue.trim().equals("")) {
+                    keyword_input.setError("Please enter mandatory field");
+                    formHasError = true;
+                }
+                if(location_chosen.equals("Other") && locationValue.trim().equals("")){
+                    location_input.setError("Please enter mandatory field");
+                    formHasError = true;
+                }
+                if(formHasError){
+                    return;
+                }
+                Log.d("form check","success form check");
+
+            }
+        });
+
+        clear_button = findViewById(R.id.clear_button);
+        clear_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keyword_input.setText("");
+                distance_input.setText("10");
+                location_input.setText("");
+                here_location.setChecked(true);  // set default location here
+                category_choice.setSelection(0);
+                distance_unit_choice.setSelection(0);
 
             }
         });
