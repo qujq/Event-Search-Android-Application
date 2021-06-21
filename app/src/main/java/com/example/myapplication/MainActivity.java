@@ -18,17 +18,18 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.*;
 import android.widget.AdapterView.*;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.content.Intent;
+
 
 public class MainActivity extends AppCompatActivity {
     static final String[] category_spinner_item = {"All","Music","Sport","Art \\u0026 Theatre","Film", "Miscellaneous"};
-    static final String[] distance_unit_item = {"Miles", "Kilometers"};
+    static final String[] distance_unit_item = {"miles", "km"};
 
-    private static String TAG = "LOGGERINFO";
+    private static final String event_search_url = "https://nodejs-9991.wl.r.appspot.com/?";
+
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.d(TAG,"click button");
             }
         });
 ///////////////////////
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     distanceValue_int = Integer.parseInt(distanceValue);
                 }
                 String locationValue = location_input.getText().toString();
-                Log.d(TAG, "keyWordValue is : " + keywordValue +
+                Log.d("search", "keyWordValue is : " + keywordValue +
                         " category_chosen: " + category_chosen +
                         " distanceValue_int: " + distanceValue_int +
                         " distance_chosen: " + distance_chosen +
@@ -148,6 +148,27 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 Log.d("form check","success form check");
+//                generate url
+                String search_url = "";
+                search_url += event_search_url;
+                search_url += "keyword=" + keywordValue;
+                search_url += "&category=" + category_chosen;
+                search_url += "&distance=" + distanceValue_int;
+                search_url += "&distanceUnit=" + distance_chosen;
+                search_url += "&from=" + location_chosen;
+                search_url += "&fromLocation=" + locationValue;
+                search_url += "&latitude=" + 34.0522;
+                search_url += "&longitude=" + -118.2437;
+                Log.d("search_url", search_url);
+
+                // intent obj
+                Intent intent = new Intent(MainActivity.this, SearchResult.class);
+                // pack data
+//                intent.putExtra("keyword", keyWordValue);
+                intent.putExtra("SearchURL",search_url );
+                // start activity
+                startActivity(intent);
+
 
             }
         });
@@ -162,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 here_location.setChecked(true);  // set default location here
                 category_choice.setSelection(0);
                 distance_unit_choice.setSelection(0);
+                keyword_input.setError(null);
+                location_input.setError(null);
 
             }
         });

@@ -23,4 +23,5 @@
         <item>Miles</item>
         <item>Kilometers</item>
     </string-array>
+    <string name="title_activity_search_result">SearchResult</string>
 </resources>
