@@ -119,12 +119,14 @@ public class SearchResult extends AppCompatActivity {
                                     String name = each_event.getString("name");
                                     String venue = each_event.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("name");
                                     String date = each_event.getJSONObject("dates").getJSONObject("start").getString("localDate");
+                                    String category = each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name");
 
                                     Log.d("name", name);
                                     Log.d("venue", venue);
                                     Log.d("date", date);
 
                                     Event event = new Event(name, venue, date);
+                                    event.setCategory(category);
                                     event_list.add(event);
 
                                 }
