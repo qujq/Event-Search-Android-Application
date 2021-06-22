@@ -57,10 +57,13 @@ public class SearchResult extends AppCompatActivity {
 
 //    private List<Products> listProducts;
     private RequestQueue requestQueue;
+    private List<Event> event_list;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = SearchResult.this;
 
         binding = ActivitySearchResultBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -110,6 +113,7 @@ public class SearchResult extends AppCompatActivity {
                                 JSONObject embedded = response.getJSONObject("_embedded");
                                 JSONArray events = embedded.getJSONArray("events");
                                 JSONObject each_event = null;
+                                event_list = new ArrayList<>();
                                 for (int j = 0; j < events.length(); j++) {
                                     each_event = events.getJSONObject(j);
                                     String name = each_event.getString("name");
@@ -120,7 +124,15 @@ public class SearchResult extends AppCompatActivity {
                                     Log.d("venue", venue);
                                     Log.d("date", date);
 
+                                    Event event = new Event(name, venue, date);
+                                    event_list.add(event);
+
                                 }
+
+                                RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
+                                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context,event_list);
+                                myrv.setLayoutManager(new GridLayoutManager(context,2));
+                                myrv.setAdapter(myAdapter);
                             }
 
                         }
