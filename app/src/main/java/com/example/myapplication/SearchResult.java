@@ -55,7 +55,7 @@ public class SearchResult extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivitySearchResultBinding binding;
 
-    private List<Products> listProducts;
+//    private List<Products> listProducts;
     private RequestQueue requestQueue;
 
     @Override
@@ -71,13 +71,15 @@ public class SearchResult extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        receiveData();
+
+//        binding.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
     @Override
@@ -91,11 +93,47 @@ public class SearchResult extends AppCompatActivity {
         Intent intent = getIntent();
         String search_url = intent.getStringExtra("SearchURL");
         Log.d("search_url", "url is "+ search_url);
-        listProducts = new ArrayList<>();
+//        listProducts = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                search_url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(search_url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject page = response.getJSONObject("page");
+                            int total_element = page.getInt("totalElements");
+                            if(total_element == 0){
+                                Log.d("total number", "no results");
+                            }
+                            else{
+                                JSONObject embedded = response.getJSONObject("_embedded");
+                                JSONArray events = embedded.getJSONArray("events");
+                                JSONObject each_event = null;
+                                for (int j = 0; j < events.length(); j++) {
+                                    each_event = events.getJSONObject(j);
+                                    String name = each_event.getString("name");
+                                    String venue = each_event.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("name");
+                                    String date = each_event.getJSONObject("dates").getJSONObject("start").getString("localDate");
 
+                                    Log.d("name", name);
+                                    Log.d("venue", venue);
+                                    Log.d("date", date);
+
+                                }
+                            }
+
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("TAG", error.getMessage(), error);
+                    }
         });
-    }
-}
+        requestQueue.add(jsonObjectRequest);
+        return true;
+}}

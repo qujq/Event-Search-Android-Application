@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
                 // intent obj
                 Intent intent = new Intent(MainActivity.this, SearchResult.class);
                 // pack data
-//                intent.putExtra("keyword", keyWordValue);
                 intent.putExtra("SearchURL",search_url );
                 // start activity
                 startActivity(intent);
