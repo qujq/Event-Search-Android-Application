@@ -45,10 +45,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view;
-//        LayoutInflater mInflater = LayoutInflater.from(mContext);
-//        view = mInflater.inflate(R.layout.each_event, parent, false);
-//        return new MyViewHolder(view);
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.each_event, parent, false);
         return new NormalHolder(itemView);
     }
@@ -56,7 +52,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NormalHolder normalHolder = (NormalHolder) holder;
-        normalHolder.mTV.setText(mData.get(position).getName());
+        normalHolder.title.setText(mData.get(position).getName());
+        normalHolder.venue.setText(mData.get(position).getVenue());
+        normalHolder.date.setText(mData.get(position).getDate());
     }
 
     @Override
@@ -64,24 +62,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mData.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public MyViewHolder(View itemView) {
-            super(itemView);
-
-        }
-    }
-
     public class NormalHolder extends RecyclerView.ViewHolder {
 
-        public TextView mTV;
+        public TextView title;
+        public TextView venue;
+        public TextView date;
 
         public NormalHolder(View itemView) {
             super(itemView);
-            mTV = itemView.findViewById(R.id.item_title);
-            mTV.setOnClickListener(new View.OnClickListener() {
+            title = itemView.findViewById(R.id.event_title);
+            venue = itemView.findViewById(R.id.event_venue);
+            date = itemView.findViewById(R.id.event_date);
+            title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, mTV.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, title.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            venue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, venue.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            date.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, date.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

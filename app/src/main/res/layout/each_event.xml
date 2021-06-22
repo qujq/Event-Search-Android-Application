@@ -5,52 +5,45 @@
 
 <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 
-<androidx.cardview.widget.CardView
-    android:id="@+id/card"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="185dp"
-    android:layout_height="320dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="380dp"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     cardview:cardCornerRadius="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/item_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="fitCenter" />
-
         <TextView
-            android:id="@+id/item_title"
+            android:id="@+id/event_title"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Apple iPhone 7 - 32GB - Black (Factory GSM Unlocked; ATT / T-Mobile) Smartphone"
+            android:text="title (name)"
             android:textColor="#000000"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/item_shipping"
+            android:id="@+id/event_venue"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginHorizontal="5dp"
-            android:text="Ships for $1000"
+            android:text="venue"
             android:textSize="15sp" />
 
 
         <TextView
-            android:id="@+id/item_top_rated"
+            android:id="@+id/event_date"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginHorizontal="5dp"
-            android:text="Top Rated Listing"
+            android:text="date"
             android:textSize="15sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

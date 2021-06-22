@@ -131,7 +131,7 @@ public class SearchResult extends AppCompatActivity {
 
                                 RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
                                 RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context,event_list);
-                                myrv.setLayoutManager(new GridLayoutManager(context,2));
+                                myrv.setLayoutManager(new GridLayoutManager(context,1));
                                 myrv.setAdapter(myAdapter);
                             }
 
