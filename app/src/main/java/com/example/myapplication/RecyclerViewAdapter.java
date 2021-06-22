@@ -55,6 +55,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         normalHolder.title.setText(mData.get(position).getName());
         normalHolder.venue.setText(mData.get(position).getVenue());
         normalHolder.date.setText(mData.get(position).getDate());
+        normalHolder.category.setText(mData.get(position).getCategory());
+        normalHolder.favorite.setText(mData.get(position).getFavoriteString());
     }
 
     @Override
@@ -67,22 +69,58 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public TextView title;
         public TextView venue;
         public TextView date;
+        public TextView category;
+        public TextView favorite;
+        public ImageView favorite_icon;
+        public ImageView category_icon;
 
         public NormalHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.event_title);
             venue = itemView.findViewById(R.id.event_venue);
             date = itemView.findViewById(R.id.event_date);
+            category = itemView.findViewById(R.id.event_category);
+            favorite = itemView.findViewById(R.id.event_favorite);
+            favorite_icon = itemView.findViewById(R.id.favorite_icon);
+            category_icon = itemView.findViewById(R.id.category_icon);
+            if (category == null){
+                Log.d("category", "null category");
+            }
+            Log.d("category adapter", category.getText().toString() + "000");
+
+//            if(category.equals("Art & Theatre")){
+//                category_icon.setImageResource(R.drawable.art_icon);
+//            }
+//            else if(category.equals("Film")){
+//                category_icon.setImageResource(R.drawable.film_icon);
+//            }
+//            else if(category.equals("Music")){
+//                category_icon.setImageResource(R.drawable.music_icon);
+//            }
+//            else if(category.equals("Sports")){
+//                category_icon.setImageResource(R.drawable.ic_sport_icon);
+//            }
+//            else if(category.equals("Miscellaneous")){
+//                category_icon.setImageResource(R.drawable.miscellaneous_icon);
+//            }
+
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, title.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
-            venue.setOnClickListener(new View.OnClickListener() {
+            favorite_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, venue.getText(), Toast.LENGTH_SHORT).show();
+//                    if(favorite){
+//                        favorite_icon.setImageResource(R.drawable.heart_outline_black);
+//                    }
+//                    else{
+                        favorite_icon.setImageResource(R.drawable.heart_fill_red);
+//                    }
+
                 }
             });
             date.setOnClickListener(new View.OnClickListener() {

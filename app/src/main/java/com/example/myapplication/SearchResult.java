@@ -124,8 +124,9 @@ public class SearchResult extends AppCompatActivity {
                                     Log.d("name", name);
                                     Log.d("venue", venue);
                                     Log.d("date", date);
+                                    Log.d("category", category);
 
-                                    Event event = new Event(name, venue, date);
+                                    Event event = new Event(name, venue, date, category);
                                     event.setCategory(category);
                                     event_list.add(event);
 

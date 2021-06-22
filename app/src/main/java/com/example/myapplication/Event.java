@@ -8,11 +8,13 @@ public class Event {
     private String venue;
     private String date;
     private String category;
-    private Boolean isFavoirte;
-    public Event(String name, String venue,String date) {
+    private Boolean isFavorite;
+    public Event(String name, String venue,String date, String category) {
         this.name = name;
         this.venue = venue;
         this.date = date;
+        this.category = category;
+        isFavorite = false;
     }
     public String getName() {
         return name;
@@ -26,10 +28,27 @@ public class Event {
         return date;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public String getFavoriteString() {
+        if(isFavorite){
+            return "true";
+        }
+        else{
+            return "false";
+        }
+    }
+
+    public Boolean getIsFavorite() {
+        return isFavorite;
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
-    public void setFavorite(Boolean isFavoirte) {
-        this.isFavoirte = isFavoirte;
+    public void setFavorite(Boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }
