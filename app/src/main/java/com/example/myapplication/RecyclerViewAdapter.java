@@ -57,6 +57,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         normalHolder.date.setText(mData.get(position).getDate());
         normalHolder.category.setText(mData.get(position).getCategory());
         normalHolder.favorite.setText(mData.get(position).getFavoriteString());
+
+        String category = mData.get(position).getCategory();
+        if(category.equals("Art & Theatre")){
+            normalHolder.category_icon.setImageResource(R.drawable.art_icon);
+        }
+        else if(category.equals("Film")){
+            normalHolder.category_icon.setImageResource(R.drawable.film_icon);
+        }
+        else if(category.equals("Music")){
+            normalHolder.category_icon.setImageResource(R.drawable.music_icon);
+        }
+        else if(category.equals("Sports")){
+            normalHolder.category_icon.setImageResource(R.drawable.ic_sport_icon);
+        }
+        else{
+            normalHolder.category_icon.setImageResource(R.drawable.miscellaneous_icon);
+        }
+
     }
 
     @Override
@@ -86,23 +104,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (category == null){
                 Log.d("category", "null category");
             }
-            Log.d("category adapter", category.getText().toString() + "000");
-
-//            if(category.equals("Art & Theatre")){
-//                category_icon.setImageResource(R.drawable.art_icon);
-//            }
-//            else if(category.equals("Film")){
-//                category_icon.setImageResource(R.drawable.film_icon);
-//            }
-//            else if(category.equals("Music")){
-//                category_icon.setImageResource(R.drawable.music_icon);
-//            }
-//            else if(category.equals("Sports")){
-//                category_icon.setImageResource(R.drawable.ic_sport_icon);
-//            }
-//            else if(category.equals("Miscellaneous")){
-//                category_icon.setImageResource(R.drawable.miscellaneous_icon);
-//            }
 
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
