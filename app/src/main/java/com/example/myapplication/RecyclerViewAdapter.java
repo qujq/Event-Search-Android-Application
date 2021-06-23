@@ -59,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         normalHolder.favorite.setText(mData.get(position).getFavoriteString());
 
         String category = mData.get(position).getCategory();
+
         if(category.equals("Art & Theatre")){
             normalHolder.category_icon.setImageResource(R.drawable.art_icon);
         }
@@ -74,6 +75,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         else{
             normalHolder.category_icon.setImageResource(R.drawable.miscellaneous_icon);
         }
+
+        normalHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("card view", "onClick: card view");
+                // intent obj
+                Intent intent = new Intent(mContext, EventDetail.class);
+                // pack data
+                intent.putExtra("title", mData.get(position).getName());
+                intent.putExtra("venue", mData.get(position).getVenue());
+                intent.putExtra("date", mData.get(position).getDate());
+                intent.putExtra("artistsTeams", mData.get(position).getArtistsTeams());
+                intent.putExtra("category", mData.get(position).getCategoryString());
+                intent.putExtra("priceRange", mData.get(position).getPriceRange());
+                intent.putExtra("ticketStatus", mData.get(position).getTicketStatus());
+                intent.putExtra("ticketmaster", mData.get(position).getTicketmasterUrl());
+                intent.putExtra("seatmap", mData.get(position).getSeatmapUrl());
+                // start activity
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
@@ -91,9 +113,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public TextView favorite;
         public ImageView favorite_icon;
         public ImageView category_icon;
+        public CardView cardView;
+
 
         public NormalHolder(View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card);
             title = itemView.findViewById(R.id.event_title);
             venue = itemView.findViewById(R.id.event_venue);
             date = itemView.findViewById(R.id.event_date);
@@ -105,24 +130,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Log.d("category", "null category");
             }
 
-            title.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, title.getText(), Toast.LENGTH_SHORT).show();
-                    Log.d("title", "onClick: " +  title.getText());
-                    Log.d("venue", "onClick: " +  venue.getText());
-                    Log.d("date", "onClick: " +  date.getText());
-
-                    // intent obj
-                    Intent intent = new Intent(mContext, EventDetail.class);
-                    // pack data
-                    intent.putExtra("title", title.getText());
-                    intent.putExtra("venue", venue.getText());
-                    intent.putExtra("date", date.getText());
-                    // start activity
-                    mContext.startActivity(intent);
-                }
-            });
+//            title.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(mContext, title.getText(), Toast.LENGTH_SHORT).show();
+//                    Log.d("title", "onClick: " +  title.getText());
+//                    Log.d("venue", "onClick: " +  venue.getText());
+//                    Log.d("date", "onClick: " +  date.getText());
+////                    Log.d("date", "onClick: " +  mData.get(position).getArtistsTeams());
+//
+////                    // intent obj
+////                    Intent intent = new Intent(mContext, EventDetail.class);
+////                    // pack data
+////                    intent.putExtra("title", title.getText());
+////                    intent.putExtra("venue", venue.getText());
+////                    intent.putExtra("date", date.getText());
+////                    // start activity
+////                    mContext.startActivity(intent);
+//                }
+//            });
             favorite_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -136,12 +162,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 }
             });
-            date.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, date.getText(), Toast.LENGTH_SHORT).show();
-                }
-            });
+//            date.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(mContext, date.getText(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
 
     }

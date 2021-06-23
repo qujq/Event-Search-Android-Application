@@ -48,6 +48,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 
 public class SearchResult extends AppCompatActivity {
@@ -120,20 +121,55 @@ public class SearchResult extends AppCompatActivity {
                                     String venue = each_event.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("name");
                                     String date = each_event.getJSONObject("dates").getJSONObject("start").getString("localDate");
                                     String category = each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name");
+                                    JSONArray artists_teams_list = each_event.getJSONObject("_embedded").getJSONArray("attractions"); //
+                                    List<String> artists_teams_array = new ArrayList<String>();
+                                    for(int k = 0; k < artists_teams_list.length(); ++k){
+                                        artists_teams_array.add(artists_teams_list.getJSONObject(k).getString("name"));
+                                    }
+                                    List<String> category_detail = new ArrayList<String>();
+                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name"));
+                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("genre").getString("name"));
+                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("subGenre").getString("name"));
+                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("type").getString("name"));
+                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("subType").getString("name"));
+                                    String price_range = each_event.getJSONArray("priceRanges").getJSONObject(0).getString("min")
+                                            + " ~ "
+                                            + each_event.getJSONArray("priceRanges").getJSONObject(0).getString("max")
+                                            + " USD";
+                                    String ticket_status = each_event.getJSONObject("dates").getJSONObject("status").getString("code");
+                                    String ticketmaster_url = each_event.getString("url");
+                                    String seatmap_url = each_event.getJSONObject("seatmap").getString("staticUrl");
 
                                     Log.d("name", name);
                                     Log.d("venue", venue);
                                     Log.d("date", date);
                                     Log.d("category", category);
+                                    for(int k = 0; k < artists_teams_array.size(); ++k) {
+                                        Log.d("artists_teams_array", artists_teams_array.get(k));
+                                    }
+                                    for(int k = 0; k < category_detail.size(); ++k) {
+                                        Log.d("category_detail", category_detail.get(k));
+                                    }
+                                    Log.d("price_range", price_range);
+                                    Log.d("ticket_status", ticket_status);
+                                    Log.d("ticketmaster_url", ticketmaster_url);
+                                    Log.d("seatmap_url", seatmap_url);
+
 
                                     Event event = new Event(name, venue, date, category);
                                     event.setCategory(category);
+                                    event.setArtistsTeams(artists_teams_array);
+                                    event.setCategoryDetail(category_detail);
+                                    event.setPriceRange(price_range);
+                                    event.setTicketStatus(ticket_status);
+                                    event.setTicketmasterUrl(ticketmaster_url);
+                                    event.setSeatmapUrl(seatmap_url);
                                     event_list.add(event);
 
                                 }
 
                                 RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
-                                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context,event_list);
+                                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
                                 myrv.setLayoutManager(new GridLayoutManager(context,1));
                                 myrv.setAdapter(myAdapter);
                             }
