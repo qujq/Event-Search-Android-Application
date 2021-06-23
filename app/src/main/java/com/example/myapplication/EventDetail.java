@@ -66,7 +66,7 @@ public class EventDetail extends AppCompatActivity {
         TextView artistsTeams_textview = findViewById(R.id.detail_artists_teams_content);
         artistsTeams_textview.setText(artistsTeams);
 
-        TextView venue_textview = findViewById(R.id.detail_venue_content);
+        TextView venue_textview = findViewById(R.id.venue_name_content);
         venue_textview.setText(event_venue);
 
         TextView date_textview = findViewById(R.id.detail_date_content);
@@ -171,7 +171,7 @@ public class EventDetail extends AppCompatActivity {
                 TextView detail_artists_teams_textview = findViewById(R.id.detail_artists_teams);
                 TextView detail_artists_teams_content_textview = findViewById(R.id.detail_artists_teams_content);
                 TextView detail_venue_textview = findViewById(R.id.detail_venue);
-                TextView detail_venue_content_textview = findViewById(R.id.detail_venue_content);
+                TextView detail_venue_content_textview = findViewById(R.id.venue_name_content);
                 TextView detail_date_textview = findViewById(R.id.detail_date);
                 TextView detail_date_content_textview = findViewById(R.id.detail_date_content);
                 TextView detail_category_textview = findViewById(R.id.detail_category);
@@ -185,11 +185,13 @@ public class EventDetail extends AppCompatActivity {
                 TextView detail_seat_map_textview = findViewById(R.id.detail_seat_map);
                 TextView detail_seat_map_content_textview = findViewById(R.id.detail_seat_map_content);
 
+
                 //  tab.getPosition()  返回数字，从0开始
                 // tab.getText()  返回字符串类型，从0开始
                 if (tab.getPosition() == 0){
                     Log.d("tab", "onTabSelected: 0");
                     // tab 1 events
+
                     detail_artists_teams_textview.setVisibility(View.VISIBLE);
                     detail_artists_teams_content_textview.setVisibility(View.VISIBLE);
                     detail_venue_textview.setVisibility(View.VISIBLE);
