@@ -11,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".EventDetail"></activity>
         <activity
             android:name=".SearchResult"
             android:label="@string/title_activity_search_result"
-            android:theme="@style/Theme.MyApplication.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
