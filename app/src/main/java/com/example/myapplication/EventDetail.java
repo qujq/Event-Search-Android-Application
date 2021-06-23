@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,10 @@ import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 import android.text.method.LinkMovementMethod;
+import android.view.View;
+
+//import android.support.design.widget.TabLayout;
+import com.google.android.material.tabs.TabLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,9 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventDetail extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String venue_address = "";
@@ -34,6 +33,8 @@ public class EventDetail extends AppCompatActivity {
     private String venue_child_rule = "";
     private String venue_location_latitude = "";
     private String venue_location_longitude = "";
+    private TabLayout detail_tablayout;
+    private TextView artistsTeams_textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +162,103 @@ public class EventDetail extends AppCompatActivity {
                     }
         });
         requestQueue.add(jsonObjectRequest);
+
+        detail_tablayout = findViewById(R.id.tabLayout);
+        artistsTeams_textview = findViewById(R.id.detail_artists_teams);
+        detail_tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                TextView detail_artists_teams_textview = findViewById(R.id.detail_artists_teams);
+                TextView detail_artists_teams_content_textview = findViewById(R.id.detail_artists_teams_content);
+                TextView detail_venue_textview = findViewById(R.id.detail_venue);
+                TextView detail_venue_content_textview = findViewById(R.id.detail_venue_content);
+                TextView detail_date_textview = findViewById(R.id.detail_date);
+                TextView detail_date_content_textview = findViewById(R.id.detail_date_content);
+                TextView detail_category_textview = findViewById(R.id.detail_category);
+                TextView detail_category_content_textview = findViewById(R.id.detail_category_content);
+                TextView detail_price_range_textview = findViewById(R.id.detail_price_range);
+                TextView detail_price_range_content_textview = findViewById(R.id.detail_price_range_content);
+                TextView detail_ticket_status_textview = findViewById(R.id.detail_ticket_status);
+                TextView detail_ticket_status_content_textview = findViewById(R.id.detail_ticket_status_content);
+                TextView detail_buy_ticket_at_textview = findViewById(R.id.detail_buy_ticket_at);
+                TextView detail_buy_ticket_at_content_textview = findViewById(R.id.detail_buy_ticket_at_content);
+                TextView detail_seat_map_textview = findViewById(R.id.detail_seat_map);
+                TextView detail_seat_map_content_textview = findViewById(R.id.detail_seat_map_content);
+
+                //  tab.getPosition()  返回数字，从0开始
+                // tab.getText()  返回字符串类型，从0开始
+                if (tab.getPosition() == 0){
+                    Log.d("tab", "onTabSelected: 0");
+                    // tab 1 events
+                    detail_artists_teams_textview.setVisibility(View.VISIBLE);
+                    detail_artists_teams_content_textview.setVisibility(View.VISIBLE);
+                    detail_venue_textview.setVisibility(View.VISIBLE);
+                    detail_venue_content_textview.setVisibility(View.VISIBLE);
+                    detail_date_textview.setVisibility(View.VISIBLE);
+                    detail_date_content_textview.setVisibility(View.VISIBLE);
+                    detail_category_textview.setVisibility(View.VISIBLE);
+                    detail_category_content_textview.setVisibility(View.VISIBLE);
+                    detail_price_range_textview.setVisibility(View.VISIBLE);
+                    detail_price_range_content_textview.setVisibility(View.VISIBLE);
+                    detail_ticket_status_textview.setVisibility(View.VISIBLE);
+                    detail_ticket_status_content_textview.setVisibility(View.VISIBLE);
+                    detail_buy_ticket_at_textview.setVisibility(View.VISIBLE);
+                    detail_buy_ticket_at_content_textview.setVisibility(View.VISIBLE);
+                    detail_seat_map_textview.setVisibility(View.VISIBLE);
+                    detail_seat_map_content_textview.setVisibility(View.VISIBLE);
+
+                }
+                if (tab.getPosition() == 1){
+                    Log.d("tab", "onTabSelected: 1");
+
+                    // tab 1 events
+                    detail_artists_teams_textview.setVisibility(View.GONE);
+                    detail_artists_teams_content_textview.setVisibility(View.GONE);
+                    detail_venue_textview.setVisibility(View.GONE);
+                    detail_venue_content_textview.setVisibility(View.GONE);
+                    detail_date_textview.setVisibility(View.GONE);
+                    detail_date_content_textview.setVisibility(View.GONE);
+                    detail_category_textview.setVisibility(View.GONE);
+                    detail_category_content_textview.setVisibility(View.GONE);
+                    detail_price_range_textview.setVisibility(View.GONE);
+                    detail_price_range_content_textview.setVisibility(View.GONE);
+                    detail_ticket_status_textview.setVisibility(View.GONE);
+                    detail_ticket_status_content_textview.setVisibility(View.GONE);
+                    detail_buy_ticket_at_textview.setVisibility(View.GONE);
+                    detail_buy_ticket_at_content_textview.setVisibility(View.GONE);
+                    detail_seat_map_textview.setVisibility(View.GONE);
+                    detail_seat_map_content_textview.setVisibility(View.GONE);
+                }
+                if (tab.getPosition() == 2){
+                    Log.d("tab", "onTabSelected: 2");
+                    // tab 1 events
+                    detail_artists_teams_textview.setVisibility(View.GONE);
+                    detail_artists_teams_content_textview.setVisibility(View.GONE);
+                    detail_venue_textview.setVisibility(View.GONE);
+                    detail_venue_content_textview.setVisibility(View.GONE);
+                    detail_date_textview.setVisibility(View.GONE);
+                    detail_date_content_textview.setVisibility(View.GONE);
+                    detail_category_textview.setVisibility(View.GONE);
+                    detail_category_content_textview.setVisibility(View.GONE);
+                    detail_price_range_textview.setVisibility(View.GONE);
+                    detail_price_range_content_textview.setVisibility(View.GONE);
+                    detail_ticket_status_textview.setVisibility(View.GONE);
+                    detail_ticket_status_content_textview.setVisibility(View.GONE);
+                    detail_buy_ticket_at_textview.setVisibility(View.GONE);
+                    detail_buy_ticket_at_content_textview.setVisibility(View.GONE);
+                    detail_seat_map_textview.setVisibility(View.GONE);
+                    detail_seat_map_content_textview.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
     }

@@ -17,7 +17,7 @@
         android:textColor="#878787"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detail_ticket_status3"
+        app:layout_constraintStart_toEndOf="@+id/detail_seat_map"
         app:layout_constraintTop_toBottomOf="@+id/detail_buy_ticket_at_content" />
 
     <TextView
@@ -30,11 +30,11 @@
         android:textColor="#878787"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detail_ticket_status2"
+        app:layout_constraintStart_toEndOf="@+id/detail_buy_ticket_at"
         app:layout_constraintTop_toBottomOf="@+id/detail_ticket_status_content" />
 
     <TextView
-        android:id="@+id/detail_ticket_status3"
+        android:id="@+id/detail_seat_map"
         android:layout_width="169dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detail_buy_ticket_at_content" />
 
     <TextView
-        android:id="@+id/detail_ticket_status2"
+        android:id="@+id/detail_buy_ticket_at"
         android:layout_width="169dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
@@ -181,7 +181,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detail_artists_teams_content" />
 
     <TextView
-        android:id="@+id/detail_artists_teams2"
+        android:id="@+id/detail_artists_teams"
         android:layout_width="169dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
@@ -204,7 +204,7 @@
         android:textColor="#878787"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detail_artists_teams2"
+        app:layout_constraintStart_toEndOf="@+id/detail_artists_teams"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
     <TextView
@@ -222,15 +222,19 @@
         android:id="@+id/tabLayout"
         android:layout_width="418dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/purple_500"
+        app:layout_constraintBottom_toTopOf="@+id/detail_artists_teams"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3"
         app:tabIconTint="@color/white"
         app:tabIndicatorColor="#00F30303"
         app:tabIndicatorFullWidth="false"
-        app:tabTextColor="#FFFFFF"
-        tools:layout_editor_absoluteX="0dp">
+        app:tabTextColor="#FFFFFF">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:baselineAlignBottom="false"
@@ -240,12 +244,14 @@
             android:text="EVENTS" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/artist"
             android:text="ARTIST(S)" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_venue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/venue"
@@ -259,8 +265,10 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
