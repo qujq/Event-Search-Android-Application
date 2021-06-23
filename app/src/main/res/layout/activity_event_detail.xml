@@ -185,27 +185,27 @@
         android:layout_width="169dp"
         android:layout_height="39dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:text="Artist(s)/Teams"
         android:textColor="#878787"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/detail_artists_teams_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
     <TextView
         android:id="@+id/detail_artists_teams_content"
         android:layout_width="206dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="28dp"
         android:text="TextView"
         android:textColor="#878787"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/detail_artists_teams2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
     <TextView
         android:id="@+id/detail_venue_content"
@@ -217,6 +217,50 @@
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/detail_venue"
         app:layout_constraintTop_toBottomOf="@+id/detail_artists_teams_content" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="418dp"
+        android:layout_height="62dp"
+        android:background="@color/purple_500"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        app:tabIconTint="@color/white"
+        app:tabIndicatorColor="#00F30303"
+        app:tabIndicatorFullWidth="false"
+        app:tabTextColor="#FFFFFF"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="false"
+            android:clickable="false"
+            android:foregroundTint="#F44336"
+            android:icon="@drawable/info_outline"
+            android:text="EVENTS" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/artist"
+            android:text="ARTIST(S)" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/venue"
+            android:text="VENUE" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="416dp"
+        android:layout_height="84dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
