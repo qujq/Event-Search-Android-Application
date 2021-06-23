@@ -121,7 +121,12 @@ public class SearchResult extends AppCompatActivity {
                                     String venue = each_event.getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("name");
                                     String date = each_event.getJSONObject("dates").getJSONObject("start").getString("localDate");
                                     String category = each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name");
-                                    JSONArray artists_teams_list = each_event.getJSONObject("_embedded").getJSONArray("attractions"); //
+                                    JSONArray artists_teams_list = new JSONArray();
+                                    try{
+                                        artists_teams_list = each_event.getJSONObject("_embedded").getJSONArray("attractions");
+                                    }catch (Exception e) {
+                                    }
+
                                     List<String> artists_teams_array = new ArrayList<String>();
                                     for(int k = 0; k < artists_teams_list.length(); ++k){
                                         artists_teams_array.add(artists_teams_list.getJSONObject(k).getString("name"));
@@ -130,15 +135,26 @@ public class SearchResult extends AppCompatActivity {
                                     category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name"));
                                     category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("genre").getString("name"));
                                     category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("subGenre").getString("name"));
-                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("type").getString("name"));
-                                    category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("subType").getString("name"));
+                                    try{
+                                        category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("type").getString("name"));
+                                    }catch (Exception e) {
+                                    }
+                                    try{
+                                        category_detail.add(each_event.getJSONArray("classifications").getJSONObject(0).getJSONObject("subType").getString("name"));
+                                    }catch (Exception e) {
+                                    }
                                     String price_range = each_event.getJSONArray("priceRanges").getJSONObject(0).getString("min")
                                             + " ~ "
                                             + each_event.getJSONArray("priceRanges").getJSONObject(0).getString("max")
                                             + " USD";
                                     String ticket_status = each_event.getJSONObject("dates").getJSONObject("status").getString("code");
                                     String ticketmaster_url = each_event.getString("url");
-                                    String seatmap_url = each_event.getJSONObject("seatmap").getString("staticUrl");
+                                    String seatmap_url = "";
+                                    try{
+                                        seatmap_url = each_event.getJSONObject("seatmap").getString("staticUrl");
+                                    }catch (Exception e) {
+                                        seatmap_url = "";
+                                    }
 
                                     Log.d("name", name);
                                     Log.d("venue", venue);

@@ -60,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         String category = mData.get(position).getCategory();
 
-        if(category.equals("Art & Theatre")){
+        if(category.equals("Arts & Theatre")){
             normalHolder.category_icon.setImageResource(R.drawable.art_icon);
         }
         else if(category.equals("Film")){
