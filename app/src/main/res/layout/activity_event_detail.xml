@@ -15,7 +15,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            tools:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -264,6 +265,8 @@
 
                 </LinearLayout>
         </ScrollView>
+
+
 
         <TextView
             android:id="@+id/detail_venue_content2"
@@ -543,6 +546,39 @@
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/artist_tab"
+            android:layout_width="410dp"
+            android:layout_height="581dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+                <TextView
+                    android:id="@+id/artist"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:textColor="#878787"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/artist_no_records"
+                    android:layout_width="128dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="141dp"
+                    android:layout_marginTop="173dp"
+                    android:layout_marginEnd="142dp"
+                    android:layout_marginBottom="367dp"
+                    android:text="No records"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
 
         <!--        <TextView-->
 <!--            android:id="@+id/venue_name"-->

@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Layout;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.*;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 
@@ -36,20 +38,12 @@ public class EventDetail extends AppCompatActivity {
     private TabLayout detail_tablayout;
     private TextView artistsTeams_textview;
 
+    private String settext_temp = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
-
-//        String venue_address = "";
-//        String venue_city = "";
-//        String venue_phone_number = "";
-//        String venue_open_hours = "";
-//        String venue_general_rule = "";
-//        String venue_child_rule = "";
-//        String venue_location_latitude = "";
-//        String venue_location_longitude = "";
-
         Intent intent = getIntent();
         String event_name = intent.getStringExtra("title");
         String event_venue = intent.getStringExtra("venue");
@@ -60,6 +54,94 @@ public class EventDetail extends AppCompatActivity {
         String ticketStatus = intent.getStringExtra("ticketStatus");
         String ticketmaster = intent.getStringExtra("ticketmaster");
         String seatmap = intent.getStringExtra("seatmap");
+
+        String artist_url = "https://nodejs-9991.wl.r.appspot.com/spotify?artist=";
+        for (String each_artist: artistsTeams.split("\\|")){
+            Log.d("each_artist", each_artist);
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+            String url = artist_url + each_artist;
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url,
+                    null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                Log.d("spotify", "onResponse: ++++++++++++++");
+                                String total = response.getJSONObject("artists").getString("total");
+                                if(total.equals("0")){
+                                    Log.d("artist", "no records");
+                                    String artist_hyperlink = "<p>" + each_artist + ": No details" + "</p>";
+                                    settext_temp += artist_hyperlink;
+                                    TextView artist = findViewById(R.id.artist);
+                                    TextView artist_no_records = findViewById(R.id.artist_no_records);
+                                    Log.d("settext", settext_temp);
+                                    artist_no_records.setVisibility(View.GONE);
+                                    artist.setText(Html.fromHtml(settext_temp));
+                                    artist.setMovementMethod(LinkMovementMethod.getInstance());
+                                }
+                                else{
+                                    JSONArray artist_detail_list = response.getJSONObject("artists").getJSONArray("items");
+
+                                    for(int i = 0; i < artist_detail_list.length(); ++i){
+                                        String name = artist_detail_list.getJSONObject(i).getString("name");
+                                        String popularity = "";
+                                        String followers = "";
+                                        String external_urls = "";
+                                        if(name.trim().equals(each_artist.trim())){
+                                            Log.d("name===", name);
+                                            try {
+                                                popularity = artist_detail_list.getJSONObject(i).getString("popularity");
+                                            }catch (Exception e){
+                                                popularity = "";
+                                            }
+                                            try{
+                                                followers = artist_detail_list.getJSONObject(i).getJSONObject("followers").getString("total");
+                                            }catch (Exception e){
+                                                followers = "";
+                                            }
+                                            try{
+                                                external_urls = artist_detail_list.getJSONObject(i).getJSONObject("external_urls").getString("spotify");
+                                            }catch (Exception e){
+                                                external_urls = "";
+                                            }
+                                            String artist_hyperlink = "";
+                                            if(popularity.equals("") && followers.equals("") && external_urls.equals("")){
+                                                artist_hyperlink = "<p>" + name + ": No details" + "</p>";
+                                            }
+                                            else {
+                                                artist_hyperlink = "<p>Name &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;" + name + "</p>" +
+                                                        "<p>Followers &nbsp; &nbsp;&nbsp; " + followers + "</p>" +
+                                                        "<p>Popularity &nbsp;&nbsp;&nbsp; " + popularity + "</p>" +
+                                                        "<p>CheckAt   &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;    " +
+                                                        "<a href=" + external_urls + " >Spotify</a></p>";
+                                            }
+                                            Log.d("settext", settext_temp);
+                                            settext_temp += artist_hyperlink;
+                                            TextView artist = findViewById(R.id.artist);
+                                            TextView artist_no_records = findViewById(R.id.artist_no_records);
+                                            artist_no_records.setVisibility(View.GONE);
+                                            Log.d("settext", settext_temp);
+                                            artist.setText(Html.fromHtml(settext_temp));
+                                            artist.setMovementMethod(LinkMovementMethod.getInstance());
+
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("TAG", error.getMessage(), error);
+                        }
+                    });
+            requestQueue.add(jsonObjectRequest);
+        }
 
         Log.d("event_details", "*****************");
         Log.d("event_name", event_name);
@@ -111,12 +193,12 @@ public class EventDetail extends AppCompatActivity {
         TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
         TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
 
-        // intent obj
-        Intent intent_map = new Intent(EventDetail.this, MapsActivity.class);
-        // pack data
-//        intent.putExtra("SearchURL",search_url );
-        // start activity
-        startActivity(intent_map);
+//        // intent obj
+//        Intent intent_map = new Intent(EventDetail.this, MapsActivity.class);
+//        // pack data
+////        intent.putExtra("SearchURL",search_url );
+//        // start activity
+//        startActivity(intent_map);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(venueDetailUrl,
@@ -197,18 +279,6 @@ public class EventDetail extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
 
-
-//        String venue_address = this.venue_address;
-//        String venue_city = "";
-//        String venue_phone_number = "";
-//        String venue_open_hours = "";
-//        String venue_general_rule = "";
-//        String venue_child_rule = "";
-//        String venue_location_latitude = "";
-//        String venue_location_longitude = "";
-
-
-
         venue_name_content_textview.setVisibility(View.GONE);
         venue_address_content_textview.setVisibility(View.GONE);
         venue_city_content_textview.setVisibility(View.GONE);
@@ -233,6 +303,10 @@ public class EventDetail extends AppCompatActivity {
         venue_open_hours_textview.setVisibility(View.GONE);
         venue_general_rule_textview.setVisibility(View.GONE);
         venue_child_rule_textview.setVisibility(View.GONE);
+
+        // tab 2
+        LinearLayout artist_tab = findViewById(R.id.artist_tab);
+        artist_tab.setVisibility(View.GONE);
 
 
         detail_tablayout = findViewById(R.id.tabLayout);
@@ -267,6 +341,10 @@ public class EventDetail extends AppCompatActivity {
 
 
 
+
+
+
+
                 if (tab.getPosition() == 0){
                     Log.d("tab", "onTabSelected: 0");
                     // tab 0 events
@@ -286,6 +364,9 @@ public class EventDetail extends AppCompatActivity {
                     detail_buy_ticket_at_content_textview.setVisibility(View.VISIBLE);
                     detail_seat_map_textview.setVisibility(View.VISIBLE);
                     detail_seat_map_content_textview.setVisibility(View.VISIBLE);
+
+                    // tab 1
+                    artist_tab.setVisibility(View.GONE);
 
                     // tab 2
                     venue_venue_name_textview.setVisibility(View.GONE);
@@ -326,7 +407,8 @@ public class EventDetail extends AppCompatActivity {
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
 
-                    // tab 1 artist
+                    // tab 1
+                    artist_tab.setVisibility(View.VISIBLE);
 
                     // tab 2
                     venue_venue_name_textview.setVisibility(View.GONE);
@@ -364,6 +446,9 @@ public class EventDetail extends AppCompatActivity {
                     detail_buy_ticket_at_content_textview.setVisibility(View.GONE);
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
+
+                    // tab 1
+                    artist_tab.setVisibility(View.GONE);
 
                     // tab 2
                     venue_venue_name_textview.setVisibility(View.VISIBLE);
