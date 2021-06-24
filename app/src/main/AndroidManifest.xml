@@ -11,8 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDRm6eke0AgBCdf-4QGRrYOhktzb4y8Jos"/>
         <activity
             android:name=".EventDetail"
+            android:theme="@style/Theme.MyApplication.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".MapsActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar">
 
         </activity>

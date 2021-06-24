@@ -130,44 +130,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Log.d("category", "null category");
             }
 
-//            title.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(mContext, title.getText(), Toast.LENGTH_SHORT).show();
-//                    Log.d("title", "onClick: " +  title.getText());
-//                    Log.d("venue", "onClick: " +  venue.getText());
-//                    Log.d("date", "onClick: " +  date.getText());
-////                    Log.d("date", "onClick: " +  mData.get(position).getArtistsTeams());
-//
-////                    // intent obj
-////                    Intent intent = new Intent(mContext, EventDetail.class);
-////                    // pack data
-////                    intent.putExtra("title", title.getText());
-////                    intent.putExtra("venue", venue.getText());
-////                    intent.putExtra("date", date.getText());
-////                    // start activity
-////                    mContext.startActivity(intent);
-//                }
-//            });
             favorite_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(mContext, venue.getText(), Toast.LENGTH_SHORT).show();
-//                    if(favorite){
-//                        favorite_icon.setImageResource(R.drawable.heart_outline_black);
-//                    }
-//                    else{
                         favorite_icon.setImageResource(R.drawable.heart_fill_red);
-//                    }
-
                 }
             });
-//            date.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(mContext, date.getText(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
+
         }
 
     }

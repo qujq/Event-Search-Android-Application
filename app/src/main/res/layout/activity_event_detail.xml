@@ -10,15 +10,12 @@
 
         <ScrollView
             android:layout_width="413dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_height="586dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-            app:layout_constraintVertical_bias="0.729"
-            tools:visibility="gone">
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -278,7 +275,7 @@
             android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@+id/detail_venue"
             app:layout_constraintTop_toBottomOf="@+id/detail_artists_teams_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_seat_map_content"
@@ -292,7 +289,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_seat_map"
             app:layout_constraintTop_toBottomOf="@+id/detail_buy_ticket_at_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_buy_ticket_at_content"
@@ -306,7 +303,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_buy_ticket_at"
             app:layout_constraintTop_toBottomOf="@+id/detail_ticket_status_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_seat_map"
@@ -321,7 +318,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_seat_map_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_buy_ticket_at_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_buy_ticket_at"
@@ -336,7 +333,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_buy_ticket_at_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_ticket_status_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_ticket_status_content"
@@ -349,7 +346,7 @@
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_price_range_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_ticket_status"
@@ -363,7 +360,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_ticket_status_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_price_range_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_price_range_content"
@@ -377,7 +374,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_price_range"
             app:layout_constraintTop_toBottomOf="@+id/detail_category_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_price_range"
@@ -392,7 +389,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_price_range_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_category_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_category_content"
@@ -406,7 +403,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_category"
             app:layout_constraintTop_toBottomOf="@+id/detail_date_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_category"
@@ -421,7 +418,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_category_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_date_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_date_content"
@@ -435,7 +432,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_date"
             app:layout_constraintTop_toBottomOf="@+id/detail_venue_content2"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_date"
@@ -450,7 +447,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_date_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_venue_content2"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_venue"
@@ -464,7 +461,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_artists_teams_content"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_artists_teams"
@@ -479,7 +476,7 @@
             app:layout_constraintEnd_toStartOf="@+id/detail_artists_teams_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/detail_artists_teams_content"
@@ -493,7 +490,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detail_artists_teams"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

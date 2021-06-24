@@ -111,6 +111,13 @@ public class EventDetail extends AppCompatActivity {
         TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
         TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
 
+        // intent obj
+        Intent intent_map = new Intent(EventDetail.this, MapsActivity.class);
+        // pack data
+//        intent.putExtra("SearchURL",search_url );
+        // start activity
+        startActivity(intent_map);
+
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(venueDetailUrl,
                 null,
