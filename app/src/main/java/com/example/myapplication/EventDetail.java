@@ -185,13 +185,19 @@ public class EventDetail extends AppCompatActivity {
                 TextView detail_seat_map_textview = findViewById(R.id.detail_seat_map);
                 TextView detail_seat_map_content_textview = findViewById(R.id.detail_seat_map_content);
 
+                TextView venue_name_content_textview = findViewById(R.id.venue_name_content);
+                TextView venue_address_content_textview = findViewById(R.id.venue_address_content);
+                TextView venue_city_content_textview = findViewById(R.id.venue_city_content);
+                TextView venue_phone_number_content_textview = findViewById(R.id.venue_phone_number_content);
+                TextView venue_open_hours_content_textview = findViewById(R.id.venue_open_hours_content);
+                TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
+                TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
 
-                //  tab.getPosition()  返回数字，从0开始
-                // tab.getText()  返回字符串类型，从0开始
+
+
                 if (tab.getPosition() == 0){
                     Log.d("tab", "onTabSelected: 0");
-                    // tab 1 events
-
+                    // tab 0 events
                     detail_artists_teams_textview.setVisibility(View.VISIBLE);
                     detail_artists_teams_content_textview.setVisibility(View.VISIBLE);
                     detail_venue_textview.setVisibility(View.VISIBLE);
@@ -213,7 +219,7 @@ public class EventDetail extends AppCompatActivity {
                 if (tab.getPosition() == 1){
                     Log.d("tab", "onTabSelected: 1");
 
-                    // tab 1 events
+                    // tab 0 events
                     detail_artists_teams_textview.setVisibility(View.GONE);
                     detail_artists_teams_content_textview.setVisibility(View.GONE);
                     detail_venue_textview.setVisibility(View.GONE);
@@ -230,10 +236,12 @@ public class EventDetail extends AppCompatActivity {
                     detail_buy_ticket_at_content_textview.setVisibility(View.GONE);
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
+
+                    // tab 2 artist
                 }
                 if (tab.getPosition() == 2){
                     Log.d("tab", "onTabSelected: 2");
-                    // tab 1 events
+                    // tab 0 events
                     detail_artists_teams_textview.setVisibility(View.GONE);
                     detail_artists_teams_content_textview.setVisibility(View.GONE);
                     detail_venue_textview.setVisibility(View.GONE);
@@ -250,6 +258,9 @@ public class EventDetail extends AppCompatActivity {
                     detail_buy_ticket_at_content_textview.setVisibility(View.GONE);
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
+
+                    // tab 3 venue
+
                 }
             }
             @Override

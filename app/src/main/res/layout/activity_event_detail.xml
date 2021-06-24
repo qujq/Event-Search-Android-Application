@@ -18,12 +18,12 @@
             android:textColor="#878787"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/venue_open_hours_content3"
+            app:layout_constraintEnd_toStartOf="@+id/venue_child_rule_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/venue_general_rule_content" />
 
         <TextView
-            android:id="@+id/venue_open_hours_content3"
+            android:id="@+id/venue_child_rule_content"
             android:layout_width="206dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
