@@ -41,6 +41,15 @@ public class EventDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
 
+//        String venue_address = "";
+//        String venue_city = "";
+//        String venue_phone_number = "";
+//        String venue_open_hours = "";
+//        String venue_general_rule = "";
+//        String venue_child_rule = "";
+//        String venue_location_latitude = "";
+//        String venue_location_longitude = "";
+
         Intent intent = getIntent();
         String event_name = intent.getStringExtra("title");
         String event_venue = intent.getStringExtra("venue");
@@ -66,7 +75,7 @@ public class EventDetail extends AppCompatActivity {
         TextView artistsTeams_textview = findViewById(R.id.detail_artists_teams_content);
         artistsTeams_textview.setText(artistsTeams);
 
-        TextView venue_textview = findViewById(R.id.venue_name_content);
+        TextView venue_textview = findViewById(R.id.detail_venue_content2);
         venue_textview.setText(event_venue);
 
         TextView date_textview = findViewById(R.id.detail_date_content);
@@ -93,6 +102,14 @@ public class EventDetail extends AppCompatActivity {
 
         String venueDetailUrl = "https://nodejs-9991.wl.r.appspot.com/venueDetail?keyword=";
         venueDetailUrl += event_venue;
+
+        TextView venue_name_content_textview = findViewById(R.id.venue_name_content);
+        TextView venue_address_content_textview = findViewById(R.id.venue_address_content);
+        TextView venue_city_content_textview = findViewById(R.id.venue_city_content);
+        TextView venue_phone_number_content_textview = findViewById(R.id.venue_phone_number_content);
+        TextView venue_open_hours_content_textview = findViewById(R.id.venue_open_hours_content);
+        TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
+        TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(venueDetailUrl,
@@ -146,6 +163,15 @@ public class EventDetail extends AppCompatActivity {
                                     Log.d("venue_child_rule", venue_child_rule);
                                     Log.d("venue_location_latitude", venue_location_latitude);
                                     Log.d("venue_location_longitude", venue_location_longitude);
+
+                                    venue_name_content_textview.setText(event_venue);
+                                    Log.d("venue_address+", "000"+venue_address);
+                                    venue_address_content_textview.setText(venue_address);
+                                    venue_city_content_textview.setText(venue_city);
+                                    venue_phone_number_content_textview.setText(venue_phone_number);
+                                    venue_open_hours_content_textview.setText(venue_open_hours);
+                                    venue_general_rule_content_textview.setText(venue_general_rule);
+                                    venue_child_rule_content_textview.setText(venue_child_rule);
                                     break;
                                 }
                             }
@@ -163,6 +189,45 @@ public class EventDetail extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
 
+
+
+//        String venue_address = this.venue_address;
+//        String venue_city = "";
+//        String venue_phone_number = "";
+//        String venue_open_hours = "";
+//        String venue_general_rule = "";
+//        String venue_child_rule = "";
+//        String venue_location_latitude = "";
+//        String venue_location_longitude = "";
+
+
+
+        venue_name_content_textview.setVisibility(View.GONE);
+        venue_address_content_textview.setVisibility(View.GONE);
+        venue_city_content_textview.setVisibility(View.GONE);
+        venue_phone_number_content_textview.setVisibility(View.GONE);
+        venue_open_hours_content_textview.setVisibility(View.GONE);
+        venue_general_rule_content_textview.setVisibility(View.GONE);
+        venue_child_rule_content_textview.setVisibility(View.GONE);
+
+        TextView venue_venue_name_textview = findViewById(R.id.venue_venue_name);
+        TextView venue_address_textview = findViewById(R.id.venue_address);
+        TextView venue_city_textview = findViewById(R.id.venue_city);
+        TextView venue_phone_number_textview = findViewById(R.id.venue_phone_number);
+        TextView venue_open_hours_textview = findViewById(R.id.venue_open_hours);
+        TextView venue_general_rule_textview = findViewById(R.id.venue_general_rule);
+        TextView venue_child_rule_textview = findViewById(R.id.venue_child_rule);
+
+
+        venue_venue_name_textview.setVisibility(View.GONE);
+        venue_address_textview.setVisibility(View.GONE);
+        venue_city_textview.setVisibility(View.GONE);
+        venue_phone_number_textview.setVisibility(View.GONE);
+        venue_open_hours_textview.setVisibility(View.GONE);
+        venue_general_rule_textview.setVisibility(View.GONE);
+        venue_child_rule_textview.setVisibility(View.GONE);
+
+
         detail_tablayout = findViewById(R.id.tabLayout);
         artistsTeams_textview = findViewById(R.id.detail_artists_teams);
         detail_tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -171,7 +236,7 @@ public class EventDetail extends AppCompatActivity {
                 TextView detail_artists_teams_textview = findViewById(R.id.detail_artists_teams);
                 TextView detail_artists_teams_content_textview = findViewById(R.id.detail_artists_teams_content);
                 TextView detail_venue_textview = findViewById(R.id.detail_venue);
-                TextView detail_venue_content_textview = findViewById(R.id.venue_name_content);
+                TextView detail_venue_content_textview = findViewById(R.id.detail_venue_content2);
                 TextView detail_date_textview = findViewById(R.id.detail_date);
                 TextView detail_date_content_textview = findViewById(R.id.detail_date_content);
                 TextView detail_category_textview = findViewById(R.id.detail_category);
@@ -215,6 +280,23 @@ public class EventDetail extends AppCompatActivity {
                     detail_seat_map_textview.setVisibility(View.VISIBLE);
                     detail_seat_map_content_textview.setVisibility(View.VISIBLE);
 
+                    // tab 2
+                    venue_venue_name_textview.setVisibility(View.GONE);
+                    venue_address_textview.setVisibility(View.GONE);
+                    venue_city_textview.setVisibility(View.GONE);
+                    venue_phone_number_textview.setVisibility(View.GONE);
+                    venue_open_hours_textview.setVisibility(View.GONE);
+                    venue_general_rule_textview.setVisibility(View.GONE);
+                    venue_child_rule_textview.setVisibility(View.GONE);
+
+                    venue_name_content_textview.setVisibility(View.GONE);
+                    venue_address_content_textview.setVisibility(View.GONE);
+                    venue_city_content_textview.setVisibility(View.GONE);
+                    venue_phone_number_content_textview.setVisibility(View.GONE);
+                    venue_open_hours_content_textview.setVisibility(View.GONE);
+                    venue_general_rule_content_textview.setVisibility(View.GONE);
+                    venue_child_rule_content_textview.setVisibility(View.GONE);
+
                 }
                 if (tab.getPosition() == 1){
                     Log.d("tab", "onTabSelected: 1");
@@ -237,7 +319,24 @@ public class EventDetail extends AppCompatActivity {
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
 
-                    // tab 2 artist
+                    // tab 1 artist
+
+                    // tab 2
+                    venue_venue_name_textview.setVisibility(View.GONE);
+                    venue_address_textview.setVisibility(View.GONE);
+                    venue_city_textview.setVisibility(View.GONE);
+                    venue_phone_number_textview.setVisibility(View.GONE);
+                    venue_open_hours_textview.setVisibility(View.GONE);
+                    venue_general_rule_textview.setVisibility(View.GONE);
+                    venue_child_rule_textview.setVisibility(View.GONE);
+
+                    venue_name_content_textview.setVisibility(View.GONE);
+                    venue_address_content_textview.setVisibility(View.GONE);
+                    venue_city_content_textview.setVisibility(View.GONE);
+                    venue_phone_number_content_textview.setVisibility(View.GONE);
+                    venue_open_hours_content_textview.setVisibility(View.GONE);
+                    venue_general_rule_content_textview.setVisibility(View.GONE);
+                    venue_child_rule_content_textview.setVisibility(View.GONE);
                 }
                 if (tab.getPosition() == 2){
                     Log.d("tab", "onTabSelected: 2");
@@ -259,7 +358,22 @@ public class EventDetail extends AppCompatActivity {
                     detail_seat_map_textview.setVisibility(View.GONE);
                     detail_seat_map_content_textview.setVisibility(View.GONE);
 
-                    // tab 3 venue
+                    // tab 2
+                    venue_venue_name_textview.setVisibility(View.VISIBLE);
+                    venue_address_textview.setVisibility(View.VISIBLE);
+                    venue_city_textview.setVisibility(View.VISIBLE);
+                    venue_phone_number_textview.setVisibility(View.VISIBLE);
+                    venue_open_hours_textview.setVisibility(View.VISIBLE);
+                    venue_general_rule_textview.setVisibility(View.VISIBLE);
+                    venue_child_rule_textview.setVisibility(View.VISIBLE);
+
+                    venue_name_content_textview.setVisibility(View.VISIBLE);
+                    venue_address_content_textview.setVisibility(View.VISIBLE);
+                    venue_city_content_textview.setVisibility(View.VISIBLE);
+                    venue_phone_number_content_textview.setVisibility(View.VISIBLE);
+                    venue_open_hours_content_textview.setVisibility(View.VISIBLE);
+                    venue_general_rule_content_textview.setVisibility(View.VISIBLE);
+                    venue_child_rule_content_textview.setVisibility(View.VISIBLE);
 
                 }
             }
