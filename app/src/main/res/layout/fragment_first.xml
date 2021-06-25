@@ -213,6 +213,7 @@
         tools:visibility="gone" />
 
     <LinearLayout
+        android:id="@+id/favorite_layout"
         android:layout_width="408dp"
         android:layout_height="663dp"
         android:layout_marginTop="50dp"

@@ -86,7 +86,7 @@ public class Event {
         this.category = category;
     }
 
-    public void setFavorite(Boolean isFavorite) {
+    public void setIsFavorite(Boolean isFavorite) {
         this.isFavorite = isFavorite;
     }
 

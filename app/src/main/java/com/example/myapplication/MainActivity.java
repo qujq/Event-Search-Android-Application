@@ -28,15 +28,18 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.content.Intent;
 
 
-import com.google.android.material.tabs.TabLayout;
-
 import java.util.ArrayList;
 import java.util.List;
+import android.content.SharedPreferences;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 
 public class MainActivity extends AppCompatActivity {
     static final String[] category_spinner_item = {"All","Music","Sport","Art \\u0026 Theatre","Film", "Miscellaneous"};
     static final String[] distance_unit_item = {"miles", "km"};
+    SharedPreferences sharedpreferences;
 
     private static final String event_search_url = "https://nodejs-9991.wl.r.appspot.com/?";
 
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout detail_tablayout;
     private Context context;
     private List<Event> event_list;
+    public static final String mypreference = "mypref";
+    public JSONArray favorite_json_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 ///////////////////////
+        context = MainActivity.this;
+
+//        // get favorite
+//        sharedpreferences = context.getSharedPreferences(mypreference,
+//                Context.MODE_PRIVATE);
+//        if (sharedpreferences.contains("favorite")) {
+//            Log.d("first page shared pref", (sharedpreferences.getString("favorite", "[]")));
+//            try {
+//                favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
+//            }catch (JSONException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//            for (int i = 0; i < favorite_json_list.length(); i++) {
+//                try{
+//                    Log.d("first page split", favorite_json_list.getJSONObject(i).toString());
+//                }catch (JSONException ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//            }
+//        }
+//        else{
+//            SharedPreferences.Editor editor = sharedpreferences.edit();
+//            editor.putString("favorite", "[]");
+//            editor.commit();
+//        }
+
 
         location_choice = findViewById(R.id.location_choice);
         here_location = findViewById(R.id.here_location);
@@ -215,31 +246,89 @@ public class MainActivity extends AppCompatActivity {
                     search_form_content.setVisibility(View.VISIBLE);
                     search_button.setVisibility(View.VISIBLE);
                     clear_button.setVisibility(View.VISIBLE);
+                    LinearLayout favorite_layout = findViewById(R.id.favorite_layout);
+                    favorite_layout.setVisibility(View.GONE);
                 }
                 if (tab.getPosition() == 1){
+
+
                     Log.d("TAG", "onTabSelected: 1");
                     search_form_content.setVisibility(View.GONE);
                     search_button.setVisibility(View.GONE);
                     clear_button.setVisibility(View.GONE);
+                    LinearLayout favorite_layout = findViewById(R.id.favorite_layout);
+                    favorite_layout.setVisibility(View.VISIBLE);
 
-                    ////////////////////// test
+                    ////////////////////// favorite tab
+                    // get favorite
+                    sharedpreferences = context.getSharedPreferences(mypreference,
+                            Context.MODE_PRIVATE);
+                    if (sharedpreferences.contains("favorite")) {
+                        Log.d("first page shared pref", (sharedpreferences.getString("favorite", "[]")));
+                        try {
+                            favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
+                        }catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        for (int i = 0; i < favorite_json_list.length(); i++) {
+                            try{
+                                Log.d("first page split", favorite_json_list.getJSONObject(i).toString());
+                            }catch (JSONException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
+                    }
+                    else{
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("favorite", "[]");
+                        editor.commit();
+                    }
+
                     event_list = new ArrayList<>();
-                    context = MainActivity.this;
-                    Event event = new Event("name", "venue", "date", "category");
-                    event.setCategory("category");
-//                    event.setArtistsTeams(["artists_teams_array"]);
-//                    event.setCategoryDetail("category_detail");
-                    event.setPriceRange("price_range");
-                    event.setTicketStatus("ticket_status");
-                    event.setTicketmasterUrl("ticketmaster_url");
-                    event.setSeatmapUrl("seatmap_url");
-                    event_list.add(event);
+                    for(int k = 0; k < favorite_json_list.length(); ++k){
+                        try{
+                            String name = favorite_json_list.getJSONObject(k).getString("name");
+                            String venue = favorite_json_list.getJSONObject(k).getString("venue");
+                            String date = favorite_json_list.getJSONObject(k).getString("date");
+                            String category = favorite_json_list.getJSONObject(k).getString("category");
+                            String price_range = favorite_json_list.getJSONObject(k).getString("price_range");
+                            String ArtistsTeams = favorite_json_list.getJSONObject(k).getString("ArtistsTeams");
+                            String category_detail = favorite_json_list.getJSONObject(k).getString("category_detail");
+                            String ticket_status = favorite_json_list.getJSONObject(k).getString("ticket_status");
+                            String ticketmaster_url = favorite_json_list.getJSONObject(k).getString("ticketmaster_url");
+                            String seatmap_url = favorite_json_list.getJSONObject(k).getString("seatmap_url");
+
+                            List<String> artists_teams_array = new ArrayList<>();
+                            for (String each_artist: ArtistsTeams.split("\\|")){
+                                artists_teams_array.add(each_artist);
+                            }
+
+                            List<String> category_detail_array = new ArrayList<>();
+                            for (String each_category_detail: category_detail.split("\\|")){
+                                category_detail_array.add(each_category_detail);
+                            }
+
+                            Event event = new Event(name, venue, date, category);
+                            event.setIsFavorite(true);
+                            event.setPriceRange(price_range);
+                            event.setTicketStatus(ticket_status);
+                            event.setTicketmasterUrl(ticketmaster_url);
+                            event.setSeatmapUrl(seatmap_url);
+                            event.setArtistsTeams(artists_teams_array);
+                            event.setCategoryDetail(category_detail_array);
+                            event_list.add(event);
+                        }catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+
                     //////////////////test/////////////
 
                     RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
-                    RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
+                    RecyclerViewAdapterFavorite myAdapterFavorite = new RecyclerViewAdapterFavorite(context, event_list);
                     myrv.setLayoutManager(new GridLayoutManager(context,1));
-                    myrv.setAdapter(myAdapter);
+                    myrv.setAdapter(myAdapterFavorite);
+//                    myAdapterFavorite.setOnItemClickListener(new RecyclerViewAdapterFavorite.OnItemClickListener() {
 
 //                    // intent obj
 //                    Intent intent = new Intent(MainActivity.this, SearchResult.class);
