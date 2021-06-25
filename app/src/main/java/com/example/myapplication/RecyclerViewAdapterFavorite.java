@@ -7,25 +7,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
 import android.content.SharedPreferences;
 
 public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -213,6 +208,7 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
                 intent.putExtra("ticketStatus", mData.get(position).getTicketStatus());
                 intent.putExtra("ticketmaster", mData.get(position).getTicketmasterUrl());
                 intent.putExtra("seatmap", mData.get(position).getSeatmapUrl());
+                intent.putExtra("favorite", mData.get(position).getIsFavorite().toString());
                 // start activity
                 mContext.startActivity(intent);
             }

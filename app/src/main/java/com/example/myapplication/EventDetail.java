@@ -35,6 +35,7 @@ public class EventDetail extends AppCompatActivity {
     private String venue_child_rule = "";
     private String venue_location_latitude = "";
     private String venue_location_longitude = "";
+    private String isFavorite = "";
     private TabLayout detail_tablayout;
     private TextView artistsTeams_textview;
 
@@ -56,6 +57,8 @@ public class EventDetail extends AppCompatActivity {
         String seatmap = intent.getStringExtra("seatmap");
 
         String artist_url = "https://nodejs-9991.wl.r.appspot.com/spotify?artist=";
+
+        isFavorite = intent.getStringExtra("favorite");
         for (String each_artist: artistsTeams.split("\\|")){
             Log.d("each_artist", each_artist);
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -153,6 +156,9 @@ public class EventDetail extends AppCompatActivity {
         Log.d("ticketStatus", ticketStatus);
         Log.d("ticketmaster", ticketmaster);
         Log.d("seatmap", seatmap);
+
+        TextView event_title_textview = findViewById(R.id.event_name_detail);
+        event_title_textview.setText(event_name);
 
         TextView artistsTeams_textview = findViewById(R.id.detail_artists_teams_content);
         artistsTeams_textview.setText(artistsTeams);
@@ -277,6 +283,37 @@ public class EventDetail extends AppCompatActivity {
                     }
         });
         requestQueue.add(jsonObjectRequest);
+
+        ImageView twitter_icon = findViewById(R.id.twitter_icon);
+        twitter_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("icon", "onClick: twitter");
+            }
+        });
+
+        ImageView favorite_icon_detail = findViewById(R.id.favorite_icon_detail);
+        if(isFavorite.equals("true")){
+            favorite_icon_detail.setImageResource(R.drawable.heart_fill_red);
+        }
+        favorite_icon_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isFavorite.equals("true")){
+                    Log.d("icon", "onClick: remove favorite");
+                    isFavorite = "false";
+                    favorite_icon_detail.setImageResource(R.drawable.heart_fill_white);
+                }
+                else{
+                    Log.d("icon", "onClick: add favorite");
+                    isFavorite = "true";
+                    favorite_icon_detail.setImageResource(R.drawable.heart_fill_red);
+                }
+            }
+        });
+
+
 
 
         venue_name_content_textview.setVisibility(View.GONE);

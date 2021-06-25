@@ -543,9 +543,28 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintBottom_toTopOf="@+id/tabLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/favorite_icon_detail"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:translationX="300dp"
+                    app:srcCompat="@drawable/heart_fill_white"
+                    tools:layout_editor_absoluteX="277dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <ImageView
+                    android:id="@+id/twitter_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:translationX="310dp"
+                    app:srcCompat="@drawable/ic_twitter_ic__2_"
+                    tools:layout_editor_absoluteX="355dp"
+                    tools:layout_editor_absoluteY="16dp" />
+        </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:id="@+id/artist_tab"
@@ -578,7 +597,21 @@
                     android:text="No records"
                     android:textSize="22sp"
                     android:textStyle="bold" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/event_name_detail"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:text="event name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/toolbar3"
+            app:layout_constraintTop_toTopOf="@+id/toolbar3" />
+
 
         <!--        <TextView-->
 <!--            android:id="@+id/venue_name"-->
