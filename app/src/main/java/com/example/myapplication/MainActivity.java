@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -13,6 +14,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +30,8 @@ import android.content.Intent;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton other_location;
 
     private TabLayout detail_tablayout;
+    private Context context;
+    private List<Event> event_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +221,32 @@ public class MainActivity extends AppCompatActivity {
                     search_form_content.setVisibility(View.GONE);
                     search_button.setVisibility(View.GONE);
                     clear_button.setVisibility(View.GONE);
+
+                    ////////////////////// test
+                    event_list = new ArrayList<>();
+                    context = MainActivity.this;
+                    Event event = new Event("name", "venue", "date", "category");
+                    event.setCategory("category");
+//                    event.setArtistsTeams(["artists_teams_array"]);
+//                    event.setCategoryDetail("category_detail");
+                    event.setPriceRange("price_range");
+                    event.setTicketStatus("ticket_status");
+                    event.setTicketmasterUrl("ticketmaster_url");
+                    event.setSeatmapUrl("seatmap_url");
+                    event_list.add(event);
+                    //////////////////test/////////////
+
+                    RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+                    RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
+                    myrv.setLayoutManager(new GridLayoutManager(context,1));
+                    myrv.setAdapter(myAdapter);
+
+//                    // intent obj
+//                    Intent intent = new Intent(MainActivity.this, SearchResult.class);
+//                    // pack data
+//                    intent.putExtra("isFavorite", "true");
+//                    // start activity
+//                    startActivity(intent);
                 }
             }
             @Override

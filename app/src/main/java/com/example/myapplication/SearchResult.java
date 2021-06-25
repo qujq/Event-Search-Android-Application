@@ -62,6 +62,7 @@ public class SearchResult extends AppCompatActivity {
         String isFavorite = intent.getStringExtra("isFavorite");
         if(isFavorite.equals("true")){
 
+
         }
         else{
             receiveData(search_url);
@@ -167,7 +168,7 @@ public class SearchResult extends AppCompatActivity {
 
                                 }
 
-                                RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+                                RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
                                 RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
                                 myrv.setLayoutManager(new GridLayoutManager(context,1));
                                 myrv.setAdapter(myAdapter);

@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <!--keyword-->
         <TextView
@@ -34,7 +34,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.162"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <!--keyword input-->
 
@@ -51,7 +51,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.208"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/category"
@@ -64,7 +64,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.286"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
 
         <Spinner
@@ -78,7 +78,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.319"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/distance"
@@ -91,7 +91,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.377"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <EditText
             android:id="@+id/distance_input"
@@ -106,7 +106,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.419"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <Spinner
             android:id="@+id/distance_unit_choice"
@@ -119,7 +119,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.474"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
 
         <TextView
@@ -133,7 +133,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.539"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <RadioGroup
             android:id="@+id/location_choice"
@@ -146,7 +146,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.654"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <RadioButton
                 android:id="@+id/here_location"
@@ -154,7 +154,8 @@
                 android:layout_height="wrap_content"
                 android:text="Here"
                 tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="455dp" />
+                tools:layout_editor_absoluteY="455dp"
+                tools:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/other_location"
@@ -162,7 +163,8 @@
                 android:layout_height="wrap_content"
                 android:text="Other"
                 tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="407dp" />
+                tools:layout_editor_absoluteY="407dp"
+                tools:visibility="gone" />
 
         </RadioGroup>
 
@@ -179,7 +181,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.762"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
     </LinearLayout>
 
@@ -195,7 +197,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/form_content"
         app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <Button
         android:id="@+id/clear_button"
@@ -208,7 +210,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/form_content"
         app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <LinearLayout
         android:layout_width="408dp"
@@ -218,8 +220,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorite_recycler_view"
