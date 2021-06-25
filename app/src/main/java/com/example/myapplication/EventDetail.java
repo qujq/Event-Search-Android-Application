@@ -339,12 +339,6 @@ public class EventDetail extends AppCompatActivity {
                 TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
                 TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
 
-
-
-
-
-
-
                 if (tab.getPosition() == 0){
                     Log.d("tab", "onTabSelected: 0");
                     // tab 0 events

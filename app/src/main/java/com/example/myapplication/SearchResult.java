@@ -2,11 +2,7 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,27 +11,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivitySearchResultBinding;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 //import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,7 +31,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 
 public class SearchResult extends AppCompatActivity {
@@ -75,7 +57,16 @@ public class SearchResult extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        receiveData();
+        Intent intent = getIntent();
+        String search_url = intent.getStringExtra("SearchURL");
+        String isFavorite = intent.getStringExtra("isFavorite");
+        if(isFavorite.equals("true")){
+
+        }
+        else{
+            receiveData(search_url);
+        }
+
 
     }
 
@@ -86,9 +77,8 @@ public class SearchResult extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private boolean receiveData() {
-        Intent intent = getIntent();
-        String search_url = intent.getStringExtra("SearchURL");
+    private boolean receiveData(String search_url) {
+
         Log.d("search_url", "url is "+ search_url);
 //        listProducts = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -177,7 +167,7 @@ public class SearchResult extends AppCompatActivity {
 
                                 }
 
-                                RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
+                                RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
                                 RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
                                 myrv.setLayoutManager(new GridLayoutManager(context,1));
                                 myrv.setAdapter(myAdapter);

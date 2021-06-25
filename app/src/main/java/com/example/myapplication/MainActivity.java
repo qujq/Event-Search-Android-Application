@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
+import com.google.android.material.tabs.TabLayout;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,10 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.content.Intent;
+
+
+import com.google.android.material.tabs.TabLayout;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup location_choice;
     private RadioButton here_location;
     private RadioButton other_location;
+
+    private TabLayout detail_tablayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SearchResult.class);
                 // pack data
                 intent.putExtra("SearchURL",search_url );
+                intent.putExtra("isFavorite", "false");
                 // start activity
                 startActivity(intent);
 
@@ -184,6 +192,36 @@ public class MainActivity extends AppCompatActivity {
                 distance_unit_choice.setSelection(0);
                 keyword_input.setError(null);
                 location_input.setError(null);
+
+            }
+        });
+
+        detail_tablayout = findViewById(R.id.search_favorite_toolbar);
+        detail_tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            LinearLayout search_form_content = findViewById(R.id.form_content);
+            Button search_button = findViewById(R.id.search_button);
+            Button clear_button = findViewById(R.id.clear_button);
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0){
+                    Log.d("TAG", "onTabSelected: 0");
+                    search_form_content.setVisibility(View.VISIBLE);
+                    search_button.setVisibility(View.VISIBLE);
+                    clear_button.setVisibility(View.VISIBLE);
+                }
+                if (tab.getPosition() == 1){
+                    Log.d("TAG", "onTabSelected: 1");
+                    search_form_content.setVisibility(View.GONE);
+                    search_button.setVisibility(View.GONE);
+                    clear_button.setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });

@@ -2,202 +2,230 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Here"
+    android:id="@+id/search_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <!--keyword-->
-    <TextView
-        android:id="@+id/keyword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="0.05"
-        android:paddingTop="10dp"
-        android:text="Keyword"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
-
-    <!--keyword input-->
-
-    <EditText
-        android:id="@+id/keyword_input"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Enter keyword"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
-
-    <TextView
-        android:id="@+id/category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
-
-
-    <Spinner
-        android:id="@+id/category_choice"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:entries="@array/spingarr"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
-
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distance"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377" />
-
-    <EditText
-        android:id="@+id/distance_input"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:text="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
-
-    <Spinner
-        android:id="@+id/distance_unit_choice"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:entries="@array/distance_unit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.474" />
-
-
-    <TextView
-        android:id="@+id/from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="From"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.539" />
-
-    <RadioGroup
-        android:id="@+id/location_choice"
-        android:layout_width="160dp"
-        android:layout_height="115dp"
+    <LinearLayout
+        android:id="@+id/form_content"
+        android:layout_width="407dp"
+        android:layout_height="432dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="2dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654">
+        tools:visibility="visible">
 
-        <RadioButton
-            android:id="@+id/here_location"
-            android:layout_width="150dp"
+        <!--keyword-->
+        <TextView
+            android:id="@+id/keyword"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Here"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_editor_absoluteY="455dp" />
+            android:letterSpacing="0.05"
+            android:paddingTop="10dp"
+            android:text="Keyword"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.097"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.162"
+            tools:visibility="visible" />
 
-        <RadioButton
-            android:id="@+id/other_location"
-            android:layout_width="150dp"
+        <!--keyword input-->
+
+        <EditText
+            android:id="@+id/keyword_input"
+            android:layout_width="368dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Enter keyword"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.79"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.208"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_editor_absoluteY="407dp" />
+            android:text="Category"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.096"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.286"
+            tools:visibility="visible" />
 
-    </RadioGroup>
 
-    <EditText
-        android:id="@+id/location_input"
-        android:layout_width="368dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Type in the location"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762" />
+        <Spinner
+            android:id="@+id/category_choice"
+            android:layout_width="368dp"
+            android:layout_height="40dp"
+            android:entries="@array/spingarr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.739"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.319"
+            tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.928" />
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.377"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/distance_input"
+            android:layout_width="368dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.772"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.419"
+            tools:visibility="visible" />
+
+        <Spinner
+            android:id="@+id/distance_unit_choice"
+            android:layout_width="368dp"
+            android:layout_height="40dp"
+            android:entries="@array/distance_unit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.79"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.474"
+            tools:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.089"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.539"
+            tools:visibility="visible" />
+
+        <RadioGroup
+            android:id="@+id/location_choice"
+            android:layout_width="160dp"
+            android:layout_height="115dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.654"
+            tools:visibility="visible">
+
+            <RadioButton
+                android:id="@+id/here_location"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Here"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="455dp" />
+
+            <RadioButton
+                android:id="@+id/other_location"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="407dp" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/location_input"
+            android:layout_width="368dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Type in the location"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.79"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.762"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/search_button"
-        android:layout_width="wrap_content"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="282dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
         android:text="Search"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_input" />
+        app:layout_constraintTop_toBottomOf="@+id/form_content"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/clear_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="102dp"
+        android:layout_width="113dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="92dp"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_button"
-        app:layout_constraintTop_toBottomOf="@+id/location_input" />
+        app:layout_constraintTop_toBottomOf="@+id/form_content"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="663dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
