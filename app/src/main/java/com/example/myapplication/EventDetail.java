@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Layout;
@@ -40,6 +42,10 @@ public class EventDetail extends AppCompatActivity {
     private TextView artistsTeams_textview;
 
     private String settext_temp = "";
+    public static final String mypreference = "mypref";
+    public SharedPreferences sharedpreferences;
+    public JSONArray favorite_json_list;
+    public Context context= EventDetail.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +56,8 @@ public class EventDetail extends AppCompatActivity {
         String event_venue = intent.getStringExtra("venue");
         String event_date = intent.getStringExtra("date");
         String artistsTeams = intent.getStringExtra("artistsTeams");
-        String category = intent.getStringExtra("category");
+        String category = intent.getStringExtra("categoryDetail");
+        String category_title = intent.getStringExtra("category");
         String priceRange = intent.getStringExtra("priceRange");
         String ticketStatus = intent.getStringExtra("ticketStatus");
         String ticketmaster = intent.getStringExtra("ticketmaster");
@@ -151,7 +158,7 @@ public class EventDetail extends AppCompatActivity {
         Log.d("event_venue", event_venue);
         Log.d("event_date", event_date);
         Log.d("artistsTeams", artistsTeams);
-        Log.d("category", category);
+//        Log.d("category", category);
         Log.d("priceRange", priceRange);
         Log.d("ticketStatus", ticketStatus);
         Log.d("ticketmaster", ticketmaster);
@@ -304,11 +311,77 @@ public class EventDetail extends AppCompatActivity {
                     Log.d("icon", "onClick: remove favorite");
                     isFavorite = "false";
                     favorite_icon_detail.setImageResource(R.drawable.heart_fill_white);
+
+                    // get
+                    sharedpreferences = context.getSharedPreferences(mypreference,
+                            Context.MODE_PRIVATE);
+                    try {
+                        favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
+                    }catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    for(int j = 0; j < favorite_json_list.length(); ++j){
+                        JSONObject each_event;
+                        String event_name_in_favorite;
+                        String event_date_in_favorite;
+                        try{
+                            each_event = favorite_json_list.getJSONObject(j);
+                            event_name_in_favorite = each_event.getString("name");
+                            event_date_in_favorite = each_event.getString("date");
+                        }catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                        if(event_name_in_favorite.equals(event_name) && event_date_in_favorite.equals(event_date)){
+                            favorite_json_list.remove(j);
+                            Log.d("remove favorite", event_name);
+                            Log.d("favorite_json_list", favorite_json_list.toString());
+                            break;
+                        }
+                    }
+                    // save
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString("favorite", favorite_json_list.toString());
+                    editor.commit();
+
                 }
                 else{
                     Log.d("icon", "onClick: add favorite");
                     isFavorite = "true";
                     favorite_icon_detail.setImageResource(R.drawable.heart_fill_red);
+
+                    JSONObject each_favorite_event_content = new JSONObject();
+                    try{
+                        each_favorite_event_content.put("name", event_name);
+                        each_favorite_event_content.put("venue", event_venue);
+                        each_favorite_event_content.put("date", event_date);
+                        each_favorite_event_content.put("category", category_title);
+                        each_favorite_event_content.put("isFavorite", true);
+                        each_favorite_event_content.put("ArtistsTeams", artistsTeams);
+                        each_favorite_event_content.put("category_detail", category);
+                        each_favorite_event_content.put("price_range", priceRange);
+                        each_favorite_event_content.put("ticket_status", ticketStatus);
+                        each_favorite_event_content.put("ticketmaster_url", ticketmaster);
+                        each_favorite_event_content.put("seatmap_url", seatmap);
+
+                        // get
+                        sharedpreferences = context.getSharedPreferences(mypreference,
+                                Context.MODE_PRIVATE);
+                        try {
+                            favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
+                        }catch (JSONException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        favorite_json_list.put(each_favorite_event_content);
+                        Log.d("favorite_json_list", favorite_json_list.toString());
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("favorite", favorite_json_list.toString());
+                        editor.commit();
+
+
+                    }catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
