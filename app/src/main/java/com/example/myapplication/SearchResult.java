@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.view.View;
+import android.widget.*;
 
 public class SearchResult extends AppCompatActivity {
 
@@ -42,6 +44,7 @@ public class SearchResult extends AppCompatActivity {
     private RequestQueue requestQueue;
     private List<Event> event_list;
     private Context context;
+    private Button button_go_back_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +62,17 @@ public class SearchResult extends AppCompatActivity {
 
         Intent intent = getIntent();
         String search_url = intent.getStringExtra("SearchURL");
-        String isFavorite = intent.getStringExtra("isFavorite");
-        if(isFavorite.equals("true")){
+        receiveData(search_url);
 
+        button_go_back_main = findViewById(R.id.button_go_back_main);
+        button_go_back_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchResult.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        }
-        else{
-            receiveData(search_url);
-        }
 
 
     }
@@ -169,7 +175,7 @@ public class SearchResult extends AppCompatActivity {
                                 }
 
                                 RecyclerView myrv = findViewById(R.id.search_result_recycler_view);
-                                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list);
+                                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, event_list, search_url);
                                 myrv.setLayoutManager(new GridLayoutManager(context,1));
                                 myrv.setAdapter(myAdapter);
                             }

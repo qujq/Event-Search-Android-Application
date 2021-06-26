@@ -199,6 +199,7 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
                 // intent obj
                 Intent intent = new Intent(mContext, EventDetail.class);
                 // pack data
+                intent.putExtra("fromFavorite", true);
                 intent.putExtra("title", mData.get(position).getName());
                 intent.putExtra("venue", mData.get(position).getVenue());
                 intent.putExtra("date", mData.get(position).getDate());

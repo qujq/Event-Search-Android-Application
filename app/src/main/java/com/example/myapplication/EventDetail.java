@@ -52,6 +52,7 @@ public class EventDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         Intent intent = getIntent();
+        String event_search_url = intent.getStringExtra("search_url");
         String event_name = intent.getStringExtra("title");
         String event_venue = intent.getStringExtra("venue");
         String event_date = intent.getStringExtra("date");
@@ -62,6 +63,7 @@ public class EventDetail extends AppCompatActivity {
         String ticketStatus = intent.getStringExtra("ticketStatus");
         String ticketmaster = intent.getStringExtra("ticketmaster");
         String seatmap = intent.getStringExtra("seatmap");
+        Boolean fromFavorite = intent.getBooleanExtra("fromFavorite", false);
 
         String artist_url = "https://nodejs-9991.wl.r.appspot.com/spotify?artist=";
 
@@ -205,6 +207,23 @@ public class EventDetail extends AppCompatActivity {
         TextView venue_open_hours_content_textview = findViewById(R.id.venue_open_hours_content);
         TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
         TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
+
+        Button button_go_back_search_result = findViewById(R.id.button_go_back_search_result);
+        button_go_back_search_result.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fromFavorite){
+                    Intent intent = new Intent(EventDetail.this, MainActivity.class);
+                    intent.putExtra("favorite",true);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(EventDetail.this, SearchResult.class);
+                    intent.putExtra("SearchURL",event_search_url);
+                    startActivity(intent);
+                }
+            }
+        });
 
 //        // intent obj
 //        Intent intent_map = new Intent(EventDetail.this, MapsActivity.class);

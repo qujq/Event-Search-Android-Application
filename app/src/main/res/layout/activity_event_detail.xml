@@ -612,6 +612,15 @@
             app:layout_constraintStart_toStartOf="@+id/toolbar3"
             app:layout_constraintTop_toTopOf="@+id/toolbar3" />
 
+        <Button
+            android:id="@+id/button_go_back_search_result"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_marginTop="7dp"
+            app:icon="?attr/actionModeCloseDrawable"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar3" />
+
 
         <!--        <TextView-->
 <!--            android:id="@+id/venue_name"-->

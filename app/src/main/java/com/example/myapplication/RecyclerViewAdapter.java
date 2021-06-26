@@ -26,9 +26,11 @@ import android.content.SharedPreferences;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<Event> mData;
-    public RecyclerViewAdapter(Context mContext, List<Event> mData) {
+    private String search_url;
+    public RecyclerViewAdapter(Context mContext, List<Event> mData, String search_url) {
         this.mContext = mContext;
         this.mData = mData;
+        this.search_url = search_url;
     }
     public static final String mypreference = "mypref";
     public SharedPreferences sharedpreferences;
@@ -197,6 +199,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 // intent obj
                 Intent intent = new Intent(mContext, EventDetail.class);
                 // pack data
+                intent.putExtra("search_url",search_url);
                 intent.putExtra("title", mData.get(position).getName());
                 intent.putExtra("venue", mData.get(position).getVenue());
                 intent.putExtra("date", mData.get(position).getDate());

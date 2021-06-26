@@ -89,31 +89,6 @@ public class MainActivity extends AppCompatActivity {
 ///////////////////////
         context = MainActivity.this;
 
-//        // get favorite
-//        sharedpreferences = context.getSharedPreferences(mypreference,
-//                Context.MODE_PRIVATE);
-//        if (sharedpreferences.contains("favorite")) {
-//            Log.d("first page shared pref", (sharedpreferences.getString("favorite", "[]")));
-//            try {
-//                favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
-//            }catch (JSONException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//            for (int i = 0; i < favorite_json_list.length(); i++) {
-//                try{
-//                    Log.d("first page split", favorite_json_list.getJSONObject(i).toString());
-//                }catch (JSONException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-//            }
-//        }
-//        else{
-//            SharedPreferences.Editor editor = sharedpreferences.edit();
-//            editor.putString("favorite", "[]");
-//            editor.commit();
-//        }
-
-
         location_choice = findViewById(R.id.location_choice);
         here_location = findViewById(R.id.here_location);
         other_location = findViewById(R.id.other_location);
@@ -218,6 +193,90 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        Boolean showFavorite = intent.getBooleanExtra("favorite", false);
+        if(showFavorite){
+            Log.d("TAG", "onTabSelected: 1");
+            LinearLayout search_form_content = findViewById(R.id.form_content);
+            Button search_button = findViewById(R.id.search_button);
+            Button clear_button = findViewById(R.id.clear_button);
+            search_form_content.setVisibility(View.GONE);
+            search_button.setVisibility(View.GONE);
+            clear_button.setVisibility(View.GONE);
+            LinearLayout favorite_layout = findViewById(R.id.favorite_layout);
+            favorite_layout.setVisibility(View.VISIBLE);
+
+            ////////////////////// favorite tab
+            // get favorite
+            sharedpreferences = context.getSharedPreferences(mypreference,
+                    Context.MODE_PRIVATE);
+            if (sharedpreferences.contains("favorite")) {
+                Log.d("first page shared pref", (sharedpreferences.getString("favorite", "[]")));
+                try {
+                    favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
+                }catch (JSONException ex) {
+                    throw new RuntimeException(ex);
+                }
+                for (int i = 0; i < favorite_json_list.length(); i++) {
+                    try{
+                        Log.d("first page split", favorite_json_list.getJSONObject(i).toString());
+                    }catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+            else{
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("favorite", "[]");
+                editor.commit();
+            }
+
+            event_list = new ArrayList<>();
+            for(int k = 0; k < favorite_json_list.length(); ++k){
+                try{
+                    String name = favorite_json_list.getJSONObject(k).getString("name");
+                    String venue = favorite_json_list.getJSONObject(k).getString("venue");
+                    String date = favorite_json_list.getJSONObject(k).getString("date");
+                    String category = favorite_json_list.getJSONObject(k).getString("category");
+                    String price_range = favorite_json_list.getJSONObject(k).getString("price_range");
+                    String ArtistsTeams = favorite_json_list.getJSONObject(k).getString("ArtistsTeams");
+                    String category_detail = favorite_json_list.getJSONObject(k).getString("category_detail");
+                    String ticket_status = favorite_json_list.getJSONObject(k).getString("ticket_status");
+                    String ticketmaster_url = favorite_json_list.getJSONObject(k).getString("ticketmaster_url");
+                    String seatmap_url = favorite_json_list.getJSONObject(k).getString("seatmap_url");
+
+                    List<String> artists_teams_array = new ArrayList<>();
+                    for (String each_artist: ArtistsTeams.split("\\|")){
+                        artists_teams_array.add(each_artist);
+                    }
+
+                    List<String> category_detail_array = new ArrayList<>();
+                    for (String each_category_detail: category_detail.split("\\|")){
+                        category_detail_array.add(each_category_detail);
+                    }
+
+                    Event event = new Event(name, venue, date, category);
+                    event.setIsFavorite(true);
+                    event.setPriceRange(price_range);
+                    event.setTicketStatus(ticket_status);
+                    event.setTicketmasterUrl(ticketmaster_url);
+                    event.setSeatmapUrl(seatmap_url);
+                    event.setArtistsTeams(artists_teams_array);
+                    event.setCategoryDetail(category_detail_array);
+                    event_list.add(event);
+                }catch (JSONException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+            //////////////////test/////////////
+
+            RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+            RecyclerViewAdapterFavorite myAdapterFavorite = new RecyclerViewAdapterFavorite(context, event_list);
+            myrv.setLayoutManager(new GridLayoutManager(context,1));
+            myrv.setAdapter(myAdapterFavorite);
+        }
+
         clear_button = findViewById(R.id.clear_button);
         clear_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,7 +309,6 @@ public class MainActivity extends AppCompatActivity {
                     favorite_layout.setVisibility(View.GONE);
                 }
                 if (tab.getPosition() == 1){
-
 
                     Log.d("TAG", "onTabSelected: 1");
                     search_form_content.setVisibility(View.GONE);
