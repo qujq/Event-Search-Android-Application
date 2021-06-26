@@ -74,9 +74,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-
-
-
             Intent intent = getIntent();
             String event_search_url = intent.getStringExtra("search_url");
             String event_name = intent.getStringExtra("title");
@@ -312,13 +309,45 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                         Log.d("venue_location_longitude", venue_location_longitude);
 
                                         venue_name_content_textview.setText(event_venue);
-                                        Log.d("venue_address+", "000"+venue_address);
                                         venue_address_content_textview.setText(venue_address);
                                         venue_city_content_textview.setText(venue_city);
-                                        venue_phone_number_content_textview.setText(venue_phone_number);
-                                        venue_open_hours_content_textview.setText(venue_open_hours);
-                                        venue_general_rule_content_textview.setText(venue_general_rule);
-                                        venue_child_rule_content_textview.setText(venue_child_rule);
+                                        if(!venue_phone_number.equals("")){
+                                            venue_phone_number_content_textview.setText(venue_phone_number);
+                                        }
+                                        else{
+                                            Log.d("empty", "onResponse: empty venue_phone_number" + venue_phone_number);
+                                            TextView venue_child_rule_content_textview = findViewById(R.id.venue_phone_number);
+                                            venue_child_rule_content_textview.setVisibility(View.GONE);
+                                            venue_phone_number_content_textview.setVisibility(View.GONE);
+                                        }
+
+                                        if(!venue_open_hours.equals("")) {
+                                            venue_open_hours_content_textview.setText(venue_open_hours);
+                                        }
+                                        else{
+                                            TextView venue_open_hours_textview = findViewById(R.id.venue_open_hours);
+                                            venue_open_hours_textview.setVisibility(View.GONE);
+                                            venue_open_hours_content_textview.setVisibility(View.GONE);
+                                        }
+
+                                        if(!venue_general_rule.equals("")) {
+                                            venue_general_rule_content_textview.setText(venue_general_rule);
+                                        }
+                                        else{
+                                            TextView venue_general_rule_textview = findViewById(R.id.venue_general_rule);
+                                            venue_general_rule_textview.setVisibility(View.GONE);
+                                            venue_general_rule_content_textview.setVisibility(View.GONE);
+                                        }
+
+                                        if(!venue_child_rule.equals("")) {
+                                            venue_child_rule_content_textview.setText(venue_child_rule);
+                                        }
+                                        else{
+                                            TextView venue_child_rule_textview = findViewById(R.id.venue_child_rule);
+                                            venue_child_rule_textview.setVisibility(View.GONE);
+                                            venue_child_rule_content_textview.setVisibility(View.GONE);
+                                        }
+
                                         mapFragment.getMapAsync(MapsActivity.this);
                                         break;
                                     }
@@ -440,34 +469,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
 
-
-
-
-//            venue_name_content_textview.setVisibility(View.GONE);
-//            venue_address_content_textview.setVisibility(View.GONE);
-//            venue_city_content_textview.setVisibility(View.GONE);
-//            venue_phone_number_content_textview.setVisibility(View.GONE);
-//            venue_open_hours_content_textview.setVisibility(View.GONE);
-//            venue_general_rule_content_textview.setVisibility(View.GONE);
-//            venue_child_rule_content_textview.setVisibility(View.GONE);
-//
-//            TextView venue_venue_name_textview = findViewById(R.id.venue_venue_name);
-//            TextView venue_address_textview = findViewById(R.id.venue_address);
-//            TextView venue_city_textview = findViewById(R.id.venue_city);
-//            TextView venue_phone_number_textview = findViewById(R.id.venue_phone_number);
-//            TextView venue_open_hours_textview = findViewById(R.id.venue_open_hours);
-//            TextView venue_general_rule_textview = findViewById(R.id.venue_general_rule);
-//            TextView venue_child_rule_textview = findViewById(R.id.venue_child_rule);
-//
-//
-//            venue_venue_name_textview.setVisibility(View.GONE);
-//            venue_address_textview.setVisibility(View.GONE);
-//            venue_city_textview.setVisibility(View.GONE);
-//            venue_phone_number_textview.setVisibility(View.GONE);
-//            venue_open_hours_textview.setVisibility(View.GONE);
-//            venue_general_rule_textview.setVisibility(View.GONE);
-//            venue_child_rule_textview.setVisibility(View.GONE);
-
             // tab 1
             LinearLayout artist_tab = findViewById(R.id.artist_tab);
             artist_tab.setVisibility(View.GONE);
@@ -498,16 +499,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     TextView detail_seat_map_textview = findViewById(R.id.detail_seat_map);
                     TextView detail_seat_map_content_textview = findViewById(R.id.detail_seat_map_content);
 
-                    TextView venue_name_content_textview = findViewById(R.id.venue_name_content);
-                    TextView venue_address_content_textview = findViewById(R.id.venue_address_content);
-                    TextView venue_city_content_textview = findViewById(R.id.venue_city_content);
-                    TextView venue_phone_number_content_textview = findViewById(R.id.venue_phone_number_content);
-                    TextView venue_open_hours_content_textview = findViewById(R.id.venue_open_hours_content);
-                    TextView venue_general_rule_content_textview = findViewById(R.id.venue_general_rule_content);
-                    TextView venue_child_rule_content_textview = findViewById(R.id.venue_child_rule_content);
-
-
-
                     if (tab.getPosition() == 0){
                         Log.d("tab", "onTabSelected: 0");
                         // tab 0 events
@@ -533,21 +524,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         // tab 2
                         scroll_view_venue.setVisibility(View.GONE);
-//                        venue_venue_name_textview.setVisibility(View.GONE);
-//                        venue_address_textview.setVisibility(View.GONE);
-//                        venue_city_textview.setVisibility(View.GONE);
-//                        venue_phone_number_textview.setVisibility(View.GONE);
-//                        venue_open_hours_textview.setVisibility(View.GONE);
-//                        venue_general_rule_textview.setVisibility(View.GONE);
-//                        venue_child_rule_textview.setVisibility(View.GONE);
-//
-//                        venue_name_content_textview.setVisibility(View.GONE);
-//                        venue_address_content_textview.setVisibility(View.GONE);
-//                        venue_city_content_textview.setVisibility(View.GONE);
-//                        venue_phone_number_content_textview.setVisibility(View.GONE);
-//                        venue_open_hours_content_textview.setVisibility(View.GONE);
-//                        venue_general_rule_content_textview.setVisibility(View.GONE);
-//                        venue_child_rule_content_textview.setVisibility(View.GONE);
 
                     }
                     if (tab.getPosition() == 1){
@@ -576,21 +552,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         // tab 2
                         scroll_view_venue.setVisibility(View.GONE);
-//                        venue_venue_name_textview.setVisibility(View.GONE);
-//                        venue_address_textview.setVisibility(View.GONE);
-//                        venue_city_textview.setVisibility(View.GONE);
-//                        venue_phone_number_textview.setVisibility(View.GONE);
-//                        venue_open_hours_textview.setVisibility(View.GONE);
-//                        venue_general_rule_textview.setVisibility(View.GONE);
-//                        venue_child_rule_textview.setVisibility(View.GONE);
-//
-//                        venue_name_content_textview.setVisibility(View.GONE);
-//                        venue_address_content_textview.setVisibility(View.GONE);
-//                        venue_city_content_textview.setVisibility(View.GONE);
-//                        venue_phone_number_content_textview.setVisibility(View.GONE);
-//                        venue_open_hours_content_textview.setVisibility(View.GONE);
-//                        venue_general_rule_content_textview.setVisibility(View.GONE);
-//                        venue_child_rule_content_textview.setVisibility(View.GONE);
                     }
                     if (tab.getPosition() == 2){
                         Log.d("tab", "onTabSelected: 2");
@@ -617,21 +578,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                         // tab 2
                         scroll_view_venue.setVisibility(View.VISIBLE);
-//                        venue_venue_name_textview.setVisibility(View.VISIBLE);
-//                        venue_address_textview.setVisibility(View.VISIBLE);
-//                        venue_city_textview.setVisibility(View.VISIBLE);
-//                        venue_phone_number_textview.setVisibility(View.VISIBLE);
-//                        venue_open_hours_textview.setVisibility(View.VISIBLE);
-//                        venue_general_rule_textview.setVisibility(View.VISIBLE);
-//                        venue_child_rule_textview.setVisibility(View.VISIBLE);
-//
-//                        venue_name_content_textview.setVisibility(View.VISIBLE);
-//                        venue_address_content_textview.setVisibility(View.VISIBLE);
-//                        venue_city_content_textview.setVisibility(View.VISIBLE);
-//                        venue_phone_number_content_textview.setVisibility(View.VISIBLE);
-//                        venue_open_hours_content_textview.setVisibility(View.VISIBLE);
-//                        venue_general_rule_content_textview.setVisibility(View.VISIBLE);
-//                        venue_child_rule_content_textview.setVisibility(View.VISIBLE);
 
                     }
                 }
