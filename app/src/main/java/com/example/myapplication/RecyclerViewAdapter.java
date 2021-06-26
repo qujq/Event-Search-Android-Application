@@ -71,7 +71,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NormalHolder normalHolder = (NormalHolder) holder;
-        normalHolder.title.setText(mData.get(position).getName());
+        String title_to_set = mData.get(position).getName();
+        if(title_to_set.length() > 27){
+            title_to_set = title_to_set.substring(0,27) + "...";
+        }
+        normalHolder.title.setText(title_to_set);
         normalHolder.venue.setText(mData.get(position).getVenue());
         normalHolder.date.setText(mData.get(position).getDate());
         normalHolder.category.setText(mData.get(position).getCategory());
