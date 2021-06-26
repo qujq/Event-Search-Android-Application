@@ -197,7 +197,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View v) {
                 Log.d("card view", "onClick: card view");
                 // intent obj
-                Intent intent = new Intent(mContext, EventDetail.class);
+                Intent intent = new Intent(mContext, MapsActivity.class);
                 // pack data
                 intent.putExtra("search_url",search_url);
                 intent.putExtra("title", mData.get(position).getName());

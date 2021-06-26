@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,45 +113,6 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
         normalHolder.favorite_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                if(!mData.get(position).getIsFavorite()){
-//                    normalHolder.favorite_icon.setImageResource(R.drawable.heart_fill_red);
-//                    mData.get(position).setIsFavorite(true);
-//                    JSONObject each_favorite_event_content = new JSONObject();
-//                    try{
-//                        each_favorite_event_content.put("name", mData.get(position).getName());
-//                        each_favorite_event_content.put("venue", mData.get(position).getVenue());
-//                        each_favorite_event_content.put("date", mData.get(position).getDate());
-//                        each_favorite_event_content.put("category", mData.get(position).getCategory());
-//                        each_favorite_event_content.put("isFavorite", true);
-//                        each_favorite_event_content.put("ArtistsTeams", mData.get(position).getArtistsTeams());
-//                        each_favorite_event_content.put("category_detail", mData.get(position).getCategoryString());
-//                        each_favorite_event_content.put("price_range", mData.get(position).getPriceRange());
-//                        each_favorite_event_content.put("ticket_status", mData.get(position).getTicketStatus());
-//                        each_favorite_event_content.put("ticketmaster_url", mData.get(position).getTicketmasterUrl());
-//                        each_favorite_event_content.put("seatmap_url", mData.get(position).getSeatmapUrl());
-//
-//                        // get
-//                        sharedpreferences = mContext.getSharedPreferences(mypreference,
-//                                Context.MODE_PRIVATE);
-//                        try {
-//                            favorite_json_list = new JSONArray(sharedpreferences.getString("favorite", "[]"));
-//                        }catch (JSONException ex) {
-//                            throw new RuntimeException(ex);
-//                        }
-//                        favorite_json_list.put(each_favorite_event_content);
-//                        Log.d("favorite_json_list", favorite_json_list.toString());
-//                        SharedPreferences.Editor editor = sharedpreferences.edit();
-//                        editor.putString("favorite", favorite_json_list.toString());
-//                        editor.commit();
-//
-//
-//                    }catch (JSONException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//
-//                }
-//                else{
                     normalHolder.favorite_icon.setImageResource(R.drawable.heart_outline_black);
                     mData.get(position).setIsFavorite(false);
 
@@ -189,7 +151,6 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
                     notifyDataSetChanged();
 
                 }
-//            }
         });
 
         normalHolder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +158,7 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
             public void onClick(View v) {
                 Log.d("card view", "onClick: card view");
                 // intent obj
-                Intent intent = new Intent(mContext, EventDetail.class);
+                Intent intent = new Intent(mContext, MapsActivity.class);
                 // pack data
                 intent.putExtra("fromFavorite", true);
                 intent.putExtra("title", mData.get(position).getName());
