@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.*;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-
+import android.net.Uri;
 //import android.support.design.widget.TabLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -296,6 +296,13 @@ public class EventDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("icon", "onClick: twitter");
+                String url = "https://twitter.com/intent/tweet?text=Check out ";
+                url += event_name;
+                url += " at ";
+                url += event_venue;
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
