@@ -15,6 +15,12 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.net.Uri;
 //import android.support.design.widget.TabLayout;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.tabs.TabLayout;
 
 import com.android.volley.RequestQueue;
@@ -26,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class EventDetail extends AppCompatActivity {
     private RequestQueue requestQueue;
@@ -160,7 +167,7 @@ public class EventDetail extends AppCompatActivity {
         Log.d("event_venue", event_venue);
         Log.d("event_date", event_date);
         Log.d("artistsTeams", artistsTeams);
-//        Log.d("category", category);
+        Log.d("category", category);
         Log.d("priceRange", priceRange);
         Log.d("ticketStatus", ticketStatus);
         Log.d("ticketmaster", ticketmaster);

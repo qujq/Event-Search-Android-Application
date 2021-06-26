@@ -204,7 +204,8 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
                 intent.putExtra("venue", mData.get(position).getVenue());
                 intent.putExtra("date", mData.get(position).getDate());
                 intent.putExtra("artistsTeams", mData.get(position).getArtistsTeams());
-                intent.putExtra("category", mData.get(position).getCategoryString());
+                intent.putExtra("category", mData.get(position).getCategory());
+                intent.putExtra("categoryDetail", mData.get(position).getCategoryString());
                 intent.putExtra("priceRange", mData.get(position).getPriceRange());
                 intent.putExtra("ticketStatus", mData.get(position).getTicketStatus());
                 intent.putExtra("ticketmaster", mData.get(position).getTicketmasterUrl());
