@@ -221,12 +221,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.example.myapplication.EmptyRecyclerView
             android:id="@+id/favorite_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <include
+            android:id="@+id/id_empty_view"
+            layout="@layout/layout_empty_view"/>
     </LinearLayout>
 
 

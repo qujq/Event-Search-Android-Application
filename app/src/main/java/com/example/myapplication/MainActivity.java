@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Event> event_list;
     public static final String mypreference = "mypref";
     public JSONArray favorite_json_list;
+    private EmptyRecyclerView myrv;
+    private View mEmptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +81,6 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 ///////////////////////
         context = MainActivity.this;
 
@@ -270,11 +265,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //////////////////test/////////////
-
-            RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+            mEmptyView = findViewById(R.id.id_empty_view);
+            myrv = (EmptyRecyclerView) findViewById(R.id.favorite_recycler_view);
             RecyclerViewAdapterFavorite myAdapterFavorite = new RecyclerViewAdapterFavorite(context, event_list);
             myrv.setLayoutManager(new GridLayoutManager(context,1));
             myrv.setAdapter(myAdapterFavorite);
+            myrv.setEmptyView(mEmptyView);
         }
 
         clear_button = findViewById(R.id.clear_button);
@@ -382,11 +378,17 @@ public class MainActivity extends AppCompatActivity {
 
                     //////////////////test/////////////
 
-                    RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+//                    RecyclerView myrv = findViewById(R.id.favorite_recycler_view);
+//                    RecyclerViewAdapterFavorite myAdapterFavorite = new RecyclerViewAdapterFavorite(context, event_list);
+//                    myrv.setLayoutManager(new GridLayoutManager(context,1));
+//                    myrv.setAdapter(myAdapterFavorite);
+
+                    mEmptyView = findViewById(R.id.id_empty_view);
+                    myrv = (EmptyRecyclerView) findViewById(R.id.favorite_recycler_view);
                     RecyclerViewAdapterFavorite myAdapterFavorite = new RecyclerViewAdapterFavorite(context, event_list);
                     myrv.setLayoutManager(new GridLayoutManager(context,1));
                     myrv.setAdapter(myAdapterFavorite);
-//                    myAdapterFavorite.setOnItemClickListener(new RecyclerViewAdapterFavorite.OnItemClickListener() {
+                    myrv.setEmptyView(mEmptyView);
 
 //                    // intent obj
 //                    Intent intent = new Intent(MainActivity.this, SearchResult.class);
