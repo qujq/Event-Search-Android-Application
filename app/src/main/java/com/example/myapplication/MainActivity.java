@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     static final String[] distance_unit_item = {"miles", "km"};
     SharedPreferences sharedpreferences;
 
-    private static final String event_search_url = "https://nodejs-9991.wl.r.appspot.com/?";
+//    private static final String event_search_url = "https://nodejs-9991.wl.r.appspot.com/?";
+    private static final String event_search_url = "http://127.0.0.1:8080/?";
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
