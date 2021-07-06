@@ -4,3 +4,4 @@
 ## Android Studio project
 
 Android version of event search <br>
+On master branch (git checkout master)
